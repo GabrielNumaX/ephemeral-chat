@@ -1,0 +1,125 @@
+.toast {
+    // visibility: hidden; /* Hidden by default. Visible on click */
+    visibility: visible;
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    // background-color: #333; /* Black background color */
+    background: $blue;
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 8px; /* Rounded borders */
+    padding: 12px 8px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 100; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    right: 50%;
+    bottom: 30px; /* 30px from the bottom */
+    display: flex;
+    align-items: center;
+    -webkit-animation: fadein 0.5s, fadeout 1s 2.5s;
+    animation: fadein 0.5s, fadeout 1s 2.5s;
+
+    .iconCloseChat {
+        position: relative;
+        top: -18px;
+        font-size: 1.2rem;
+        color: $white;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .iconCloseError {
+        position: relative;
+        top: -10px;
+        font-size: 1.2rem;
+        color: $white;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .iconEnvelope {
+        font-size: 2rem;
+        color: $white;
+    }
+
+    .iconError {
+        font-size: 2rem;
+        color: $red;
+    }
+
+    .iconSuccess {
+        font-size: 2rem;
+        color: chartreuse;
+    }
+
+    .toastPContainer {
+        margin: 0 10px;
+        // background: chocolate;
+        font-size: 1.4rem;
+        min-width: 0;
+        flex: 1;
+
+        .userMsg {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: $yellow;
+        }
+
+        .errorMsg {
+            // white-space: nowrap;
+            // text-overflow: ellipsis;
+            // overflow: hidden;
+            color: $white;
+        }
+    }
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0.5;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0.5;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        // bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        // bottom: 0;
+        opacity: 0;
+    }
+}

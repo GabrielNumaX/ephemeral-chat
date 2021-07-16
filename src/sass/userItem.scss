@@ -1,0 +1,145 @@
+.contactElement {
+    // width: 48%;
+    // background: cornsilk;
+    background: $greyMessage;
+    display: flex;
+    // height: 40px;
+    padding: 8px;
+    // width: 300px;
+    margin: 4px 0;
+    border-radius: 8px;
+    width: 220px;
+    align-items: center;
+    max-height: 68px;
+
+    @include tablet {
+        width: 170px;
+        max-height: 58px;
+    }
+
+    @include mobileBig {
+        width: 140px;
+        max-height: 42px;
+    }
+
+    // &:nth-of-type(odd) {
+    //     margin-right: 8px;
+    // }
+
+    .iconContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        min-height: 38px;
+        border-radius: 50%;
+        // background: darkgoldenrod;
+        background: $blue;
+
+        @include tablet {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            min-height: 34px;
+        }
+
+        @include mobileBig {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .icon {
+            font-size: 2rem;
+            color: $white;
+        }
+    }
+
+    .contactUser {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // background-color: darkgreen;
+        flex: 1;
+        // width: 100%;
+        // height: 100%;
+        min-width: 0;
+        padding-left: 8px;
+
+        @include tablet {
+            padding-left: 6px;
+        }
+
+        .username {
+            font-size: 1.6rem;
+            color: $blue;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-right: 12px;
+
+            @include tablet {
+                margin-right: 8px;
+            }
+        }
+
+        .actionContainer {
+            display: flex;
+            // align-items: flex-end;
+            flex-direction: column;
+            // background: rebeccapurple;
+
+            .iconAction {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                // background: $red;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+
+                @include mobileBig {
+                    width: 18px;
+                    height: 18px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    background: $primaryDarkHover;
+                    // background: $blueMessage;
+                }
+
+                &:first-of-type {
+                    // margin-bottom: 8px;
+
+                    @include tablet {
+                        // margin-bottom: 6px;
+                    }
+                }
+
+                .icon,
+                .action {
+                    color: $red;
+                    font-size: 1.1rem;
+                }
+
+                .iconUnblock,
+                .actionUnblock {
+                    color: $greenIcon;
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,169 @@
+.settings {
+    display: flex;
+    flex: 1;
+    // background: grey;
+    padding: 20px 30px 30px;
+
+    @include tablet {
+        padding: 14px 20px 20px;
+    }
+
+    @include mobileBig {
+        flex-direction: column;
+    }
+
+    .contactsWrapper {
+        flex: 3;
+        // background: greenyellow;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid $primaryDarkHover;
+        border-radius: 8px;
+        margin-right: 8px;
+        // height: 100%;
+        // posible solution
+        // background: red;
+        // min-height: 0;
+        // overflow: hidden;
+        // overflow: auto;
+
+        @include mobileBig {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+
+        .contactsHeading {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid $primaryDarkHover;
+            padding: 0 8px;
+
+            .icon {
+                color: $blue;
+                font-size: 3rem;
+                margin-right: 4px;
+            }
+
+            h2 {
+                color: $blue;
+                font-size: 3rem;
+                margin-left: 4px;
+            }
+        }
+
+        input[type="search"] {
+            outline: none;
+            border: none;
+            padding: 4px 8px;
+            // background: $white;
+            border: 1px solid $primaryDarkHover;
+            color: $blue;
+            font-size: 1.6rem;
+            border-radius: 4px;
+            margin-top: 8px;
+            @include placeholder-style($blue);
+        }
+
+        // check if this should be COLUMN
+        // also same for blocked ones
+        .contactsRow {
+            display: flex;
+            // background: chocolate;
+            // align-items: center;
+            // justify-content: space-between;
+            // justify-content: center;
+            justify-content: space-around;
+            padding: 4px 8px;
+            // flex: 1;
+            flex-wrap: wrap;
+            width: 100%;
+            // height: 100%;
+            margin: 16px 0;
+
+            @include tablet {
+                margin: 10px 0;
+            }
+
+            @include mobileBig {
+                margin: 4px 0;
+                max-height: 45vh;
+                overflow: scroll;
+            }
+        }
+    }
+
+    .contactsBlockedWrapper {
+        flex: 3;
+        // background: blue;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid $primaryDarkHover;
+        border-radius: 8px;
+        margin-left: 8px;
+
+        @include mobileBig {
+            margin-left: 0;
+            margin-top: 8px;
+        }
+
+        .contactsBlockedHeading {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid $primaryDarkHover;
+            padding: 0 8px;
+
+            .icon {
+                color: $blue;
+                font-size: 3rem;
+                margin-right: 4px;
+            }
+
+            h2 {
+                color: $blue;
+                font-size: 3rem;
+                margin-left: 4px;
+            }
+        }
+
+        input[type="search"] {
+            outline: none;
+            border: none;
+            padding: 4px 8px;
+            // background: $white;
+            border: 1px solid $primaryDarkHover;
+            color: $blue;
+            font-size: 1.6rem;
+            border-radius: 4px;
+            margin-top: 8px;
+            @include placeholder-style($blue);
+        }
+
+        .contactsBlockedRow {
+            display: flex;
+            // background: chocolate;
+            // align-items: center;
+            justify-content: space-around;
+            // justify-content: center;
+            padding: 4px 8px;
+            // flex: 1;
+            flex-wrap: wrap;
+            width: 100%;
+            // height: 100%;
+            margin: 16px 0;
+
+            @include tablet {
+                margin: 10px 0;
+            }
+
+            @include mobileBig {
+                margin: 4px 0;
+                // background: green;
+                max-height: 45vh;
+                // flex-grow: 1;
+                overflow: scroll;
+            }
+        }
+    }
+}

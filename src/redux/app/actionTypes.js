@@ -1,0 +1,14 @@
+export const TOGGLE_HEADER = "TOGGLE_HEADER";
+export const SET_LOG_IN_OUT = "SET_LOG_IN_OUT";
+export const SET_USER = "SET_USER";
+export const SET_ALL_CONTACTS = "SET_ALL_CONTACTS";
+export const SET_ONLINE_USERS = "SET_ONLINE_USERS";
+export const SET_SELECTED_CONTACT = "SET_SELECTED_CONTACT";
+export const IS_TYPING = "IS_TYPING";
+export const SET_ALL_CHATS = "SET_ALL_CHATS";
+export const SET_TOAST = "SET_TOAST";
+export const CLOSE_TOAST = "CLOSE_TOAST";
+export const INCREASE_REQUESTS = "INCREASE_REQUESTS";
+export const DECREASE_REQUESTS = "DECREASE_REQUESTS";
+export const HANDLE_REQUESTS = "HANDLE_REQUESTS";
+export const SET_USER_IMAGE = "SET_USER_IMAGE";

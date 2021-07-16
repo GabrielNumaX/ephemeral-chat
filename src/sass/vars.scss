@@ -1,0 +1,58 @@
+// @import "name";
+
+$primaryDark: #1b254f;
+$primaryDarkHover: #1b254f50;
+$blue: #283673;
+$red: #ba2b27;
+$white: #f1f1f1;
+$yellow: #fbde37;
+$blueMessage: #b3bde5;
+$greyMessage: #e2e2e2;
+
+$greenIcon: #3a7128;
+
+$textH1: 3.8rem;
+
+$boxShadowPrimary: 0px 0px 10px $primaryDark;
+
+$borRadMob: 10px;
+
+@mixin placeholder-style($color) {
+    &::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: $color;
+        // or {@content} -> can add styles
+    }
+    &:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: $color;
+    }
+    &::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: $color;
+    }
+    &:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: $color;
+    }
+}
+
+$width: 768px;
+
+@mixin tablet {
+    @media (max-width: #{$width}) {
+        @content;
+    }
+}
+
+@mixin mobileBig {
+    @media (max-width: 480px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 380px) {
+        @content;
+    }
+}

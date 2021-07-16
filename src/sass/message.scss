@@ -1,0 +1,108 @@
+.messageWrapper {
+    display: flex;
+
+    &.own {
+        //    align-items: flex-end;
+        //    background-color: chocolate;
+        justify-content: flex-end;
+
+        .message {
+            background: $greyMessage;
+
+            .messageContainer {
+                color: $primaryDark;
+            }
+        }
+    }
+
+    .message {
+        // background: $blue;
+        background: $primaryDarkHover;
+        display: flex;
+        align-items: center;
+        margin: 6px 0;
+        padding: 4px 8px;
+        border-radius: 16px;
+        max-width: 70%;
+
+        @include mobileBig {
+            border-radius: $borRadMob;
+        }
+
+        .iconContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: $white;
+            min-width: 35px;
+            min-height: 35px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 8px;
+            // background: chocolate;
+
+            @include tablet {
+                min-width: 30px;
+                min-height: 30px;
+                width: 30px;
+                height: 30px;
+            }
+
+            @include mobileBig {
+                min-width: 25px;
+                min-height: 25px;
+                width: 25px;
+                height: 25px;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+
+            .icon {
+                color: $blue;
+                font-size: 200%;
+            }
+        }
+
+        .messageContainer {
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            justify-content: center;
+            padding: 4px;
+            // color: $white;
+            // flex: 1;
+            // min-width: 0;
+            color: black;
+
+            @include mobileBig {
+                padding: 0;
+            }
+
+            p {
+                // color: $white;
+                // background: coral;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                hyphens: auto;
+                font-size: 1.4rem;
+                line-height: 2rem;
+            }
+
+            .timeContainer {
+                display: flex;
+                justify-content: flex-end;
+
+                p {
+                    // color: black;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,540 @@
+.roomContainer {
+    display: flex;
+    background-color: $white;
+    flex: 1;
+    position: relative;
+    // this is to hide menuNav and menuClose on screen offset
+    overflow-x: hidden;
+
+    .mobileMenuNav {
+        display: none;
+        // overflow-x: hidden;
+
+        @include mobileBig {
+            display: flex;
+            position: absolute;
+            // position: fixed;
+            background: $blue;
+            // width: 20px;
+            // height: 24px;
+            border-radius: 3px;
+            right: 8px;
+            top: 8px;
+            // top: 55px;
+            padding: 4px 8px;
+            transition: right 0.8s ease-out;
+
+            &.hide {
+                right: -100%;
+            }
+        }
+
+        .iconContainer {
+            color: $white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 22;
+
+            &:hover {
+                cursor: pointer;
+                // background: $primaryDarkHover;
+            }
+
+            &:nth-of-type(2) {
+                margin-left: 8px;
+            }
+            .icon {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+        }
+
+        .iconContainer {
+            color: $white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 22;
+
+            &:hover {
+                cursor: pointer;
+                // background: $primaryDarkHover;
+            }
+
+            &:nth-of-type(2) {
+                margin-left: 8px;
+            }
+            .icon {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .mobileMenuClose {
+        display: none;
+        // overflow-x: hidden;
+
+        @include mobileBig {
+            display: flex;
+            position: absolute;
+            // position: fixed;
+            background: $blue;
+            // width: 20px;
+            // height: 24px;
+            border-radius: 3px;
+            // right: 8px;
+            right: -100%;
+            top: 8px;
+            // top: 55px;
+            padding: 4px 8px;
+            transition: right 0.8s ease-out;
+
+            &.show {
+                right: 8px;
+            }
+        }
+
+        .iconContainer {
+            color: $white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 22;
+
+            &:hover {
+                cursor: pointer;
+                // background: $primaryDarkHover;
+            }
+
+            &:nth-of-type(2) {
+                margin-left: 8px;
+            }
+            .icon {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+        }
+
+        .iconContainer {
+            color: $white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 22;
+
+            &:hover {
+                cursor: pointer;
+                // background: $primaryDarkHover;
+            }
+
+            &:nth-of-type(2) {
+                margin-left: 8px;
+            }
+            .icon {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .contacts {
+        display: flex;
+        flex-direction: column;
+        // background: $blue;
+        background: $greyMessage;
+        border-right: 1px solid $primaryDarkHover;
+        flex: 3;
+        overflow-y: auto;
+        min-height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+
+        @include tablet {
+            min-height: calc(100vh - 50px);
+            max-height: calc(100vh - 50px);
+        }
+
+        @include mobileBig {
+            // min-height: calc(100vh - 38px);
+            // max-height: calc(100vh - 38px);
+            display: none;
+        }
+
+        .noContacts {
+            background: $primaryDarkHover;
+            margin: 18px 10px;
+            border-radius: 16px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include mobileBig {
+                margin: 10px 10px;
+                border-radius: $borRadMob;
+                padding: 4px 8px;
+            }
+
+            p {
+                font-size: 2.2rem;
+                text-align: center;
+                color: $primaryDark;
+            }
+        }
+
+        .contactsHeading {
+            background-color: $primaryDark;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+            border-bottom: 1px solid $red;
+            border-top: 1px solid $red;
+            // border-bottom: 1px solid $white;
+
+            @include mobileBig {
+                padding: 6px 0;
+            }
+
+            h2 {
+                color: $white;
+                font-size: 2.2rem;
+                // margin-bottom: 8px;
+            }
+
+            input {
+                margin-top: 8px;
+                outline: none;
+                border: none;
+                padding: 4px 8px;
+                background: $white;
+                color: $blue;
+                font-size: 1.6rem;
+                border-radius: 4px;
+                @include placeholder-style($blue);
+                max-width: 80%;
+
+                @include mobileBig {
+                    margin-top: 6px;
+                    padding: 4px 4px;
+                }
+            }
+        }
+
+        // check contacts.scss file for contacts styles
+    }
+
+    .chatWrapper {
+        flex: 6;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+        // background: darkcyan;
+
+        @include tablet {
+            min-height: calc(100vh - 50px);
+            max-height: calc(100vh - 50px);
+        }
+
+        // @include mobileBig {
+        //     min-height: calc(100vh - 38px);
+        //     max-height: calc(100vh - 38px);
+        // }
+
+        &.empty {
+            justify-content: flex-start;
+        }
+
+        .noMessages {
+            background: $greyMessage;
+            margin: 24px 16px;
+            border-radius: 16px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include tablet {
+                margin: 14px 10px;
+                border-radius: 16px;
+                padding: 6px 12px;
+            }
+
+            @include mobileBig {
+                margin: 50px 10px;
+                border-radius: $borRadMob;
+                padding: 4px 8px;
+            }
+
+            p {
+                font-size: 3rem;
+                text-align: center;
+                color: $primaryDark;
+            }
+        }
+
+        .chat {
+            display: flex;
+            flex-direction: column;
+            // background: $white;
+            flex: 1;
+            // height: 500px;
+            position: relative;
+            padding: 10px;
+            overflow-y: auto;
+            justify-content: flex-end;
+
+            .chatBegin {
+                background: $greyMessage;
+                margin: 24px 16px;
+                border-radius: 16px;
+                padding: 8px 16px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                top: 0;
+                z-index: 1;
+
+                @include mobileBig {
+                    // margin: 10px 10px;
+                    margin: 55px auto;
+                    border-radius: $borRadMob;
+                    padding: 4px 8px;
+                    left: 50%;
+                    -webkit-transform: translateX(-50%);
+                    transform: translateX(-50%);
+                }
+
+                p {
+                    font-size: 2.2rem;
+                    text-align: center;
+                    color: $primaryDark;
+                }
+            }
+        }
+        .messageSend {
+            // position: fixed;
+            position: relative;
+            // flex: 1;
+            // position: absolute;
+            // bottom: 0;
+            // border-top: 1.5px solid $red;
+            background: $primaryDark;
+            // background: $blue;
+            width: 100%;
+            // height: 80px;
+            // flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+
+            @include mobileBig {
+                padding: 6px 8px;
+            }
+
+            .inputEmojiContainer {
+                display: flex;
+                // background: chartreuse;
+                flex: 1;
+
+                input {
+                    @extend %inputs;
+                    @include placeholder-style($blue);
+
+                    @include mobileBig {
+                        margin-right: 12px;
+                    }
+                }
+
+                .emojiShowContainer {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 0 8px;
+                    cursor: pointer;
+
+                    @include mobileBig {
+                        display: none;
+                    }
+
+                    .emojiShow {
+                        font-size: 2rem;
+                        color: $yellow;
+                    }
+
+                    .keyboardShow {
+                        font-size: 1.8rem;
+                        color: $yellow;
+                    }
+                }
+            }
+
+            .send {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: $blue;
+                border: 1px solid $yellow;
+                border-radius: 4px;
+                color: $yellow;
+                padding: 0 12px;
+                // height: 50px;
+
+                @include mobileBig {
+                    padding: 0 6px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    color: $white;
+                    border: 1px solid $white;
+                    // color: $red;
+                    // border: 1px solid $red;
+                }
+
+                p {
+                    // color: $yellow;
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    margin-right: 8px;
+                }
+
+                img {
+                    width: 28px;
+                    height: 28px;
+                    object-fit: cover;
+
+                    @include mobileBig {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .online {
+        display: flex;
+        flex-direction: column;
+        background: $greyMessage;
+        flex: 3;
+        overflow-y: auto;
+        min-height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+        border-left: 1px solid $primaryDarkHover;
+
+        @include tablet {
+            min-height: calc(100vh - 50px);
+            max-height: calc(100vh - 50px);
+        }
+
+        @include mobileBig {
+            // min-height: calc(100vh - 38px);
+            // max-height: calc(100vh - 38px);
+            display: none;
+        }
+
+        .noContacts {
+            background: $primaryDarkHover;
+            margin: 18px 10px;
+            border-radius: 16px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include tablet {
+                margin: 10px 8px;
+                padding: 6px 10px;
+            }
+
+            @include mobileBig {
+                margin: 10px 10px;
+                border-radius: $borRadMob;
+                padding: 4px 8px;
+            }
+
+            p {
+                font-size: 2.2rem;
+                text-align: center;
+                color: $primaryDark;
+            }
+        }
+
+        .onlineHeading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+            border-top: 1px solid $red;
+            border-bottom: 1px solid $red;
+            background: $primaryDark;
+
+            @include mobileBig {
+                padding: 6px 0;
+            }
+
+            h2 {
+                color: $white;
+                font-size: 2.2rem;
+            }
+
+            input {
+                margin-top: 8px;
+                outline: none;
+                border: none;
+                padding: 4px 8px;
+                background: $white;
+                color: $blue;
+                font-size: 1.6rem;
+                border-radius: 4px;
+                @include placeholder-style($blue);
+                max-width: 80%;
+
+                @include mobileBig {
+                    margin-top: 6px;
+                    padding: 4px 4px;
+                }
+            }
+        }
+    }
+}
+
+%inputs {
+    outline: none;
+    border: none;
+    padding: 4px 8px;
+    background: $white;
+    color: $blue;
+    font-size: 1.6rem;
+    // width: 80%;
+    // margin-right: 16px;
+    border-radius: 4px;
+
+    @include mobileBig {
+        padding: 4px 4px;
+    }
+}

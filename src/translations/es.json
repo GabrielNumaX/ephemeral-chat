@@ -1,0 +1,140 @@
+{
+    "header": {
+        "login": "Ingresar",
+        "signup": "Registrarse",
+        "logout": "Salir",
+        "isTyping": "escribiendo...",
+        "contacts": "Contactos",
+        "profile": "Perfil",
+        "signout": "Salir",
+        "chatWith": "Chateando con: ",
+        "requests": "Solicitudes",
+        "close": "Cerrar"
+    },
+    "error": {
+        "opsGotLost": "Ops!!! No hay nada aqui...",
+        "goBack": "Volver"
+    },
+    "roomContacts": {
+        "contacts": "Contactos",
+        "createAccount": "Crear Cuenta para añadir Contactos",
+        "noOnlineContacts": "No tienes Contactos En Linea",
+        "search": "Buscar Contactos"
+    },
+     "roomOnline": {
+        "online": "En Linea",
+        "noOneOnline": "No hay nadie En Linea",
+        "search": "Buscar Usuarios"
+    },
+    "userItem": {
+        "block": "Bloquear",
+        "unblock": "Desbloquear",
+        "delete": "Eliminar",
+        "acceptRequest": "Aceptar",
+        "rejectRequest": "Eliminar"
+    },
+    "contacts": {
+        "contacts": "Contactos",
+        "blocked": "Bloqueados",
+        "search": "Buscar...",
+        "errors": {
+            "onGetContacts": "Error obteniendo Contactos",
+            "onBlock": "Error Bloqueando Contacto. Intenta de nuevo!!!",
+            "onUnblock": "Error Desbloqueando Contacto. Intenta de nuevo!!!",
+            "onDelete": "Error Eliminando Contacto. Intenta de nuevo!!!"
+        }
+    },
+    "login": {
+        "login": "Ingresar",
+        "userOrEmail": "Nombre de Usuario o Email",
+        "password": "Contraseña",
+        "errors": {
+            "enterUserOrEmail": "Ingresa nombre de Usuario o Email",
+            "enterPassword": "Ingresa una contraseña",
+            "invalidLogin": "Nombre de Usuario o Contraseña incorrecta"
+        }
+    },
+    "main": {
+        "enterUserAccessEphemeral": "Ingresa tu nombre de Usuario para acceder a Ephemeral Chat*",
+        "chatsWont01": "* los chats ",
+        "chatsWont02": "NO SERAN",
+        "chatsWont03": " guardados.",
+        "username": "Nombre de Usuario",
+        "gotoRoom": "Ir al Chat",
+        "errors": {
+            "userError": "Ingresa nombre de Usuario. Al menos 3 caracteres",
+            "userInUse": "Nombre de Usuario no disponible"
+        }
+    },
+    "profile": {
+        "changeUsername": "Cambiar nombre de Usuario",
+        "changePassword": "Cambiar Contraseña",
+        "currentPassword": "Contraseña actual",
+        "newPassword": "Nueva Contraseña",
+        "changeImage": "Cambiar imagen de perfil",
+        "submit": "Enviar",
+        "upload": "Enviar",
+        "contacts": " Contactos",
+        "passwordChanged": "Contraseña actualizada con exito!!!",
+        "errors": {
+            "onImageUpload": "Error subiendo Imagen. Intenta de nuevo!!!",
+            "onImageRefresh": "Error obteniendo Imagen. Intenta de nuevo!!!",
+            "onChangeUsername": "Nombre de Usuario no disponible",
+            "onChangePassword": "Contraseña No valida",
+            "enterPassword": "Ingresar Contraseña",
+            "passwordNoMatch": "Las Contraseñas no coinciden",
+            "originalPasswordError": "La Contraseña actual es incorrecta"
+        }
+    },
+    "room": {
+        "noMessages": "No tienes Mensajes",
+        "beginningOfChat": "Este es el comienzo de tu chat con ",
+        "typeMessage": "Escribe tu mensaje...",
+        "send": "Enviar"
+    },
+    "signup": {
+        "createUser": "Crear Usuario",
+        "username": "Nombre de Usuario",
+        "password": "Contraseña",
+        "repeatPassword": "Repetir Contraseña",
+        "createAccount": "Crear Cuenta",
+        "disclaimer01": "*Los Usuarios Registrador podran agreagar Contactos que seran guardados pero todos los Chats son ",
+        "disclaimer02": "(estos",
+        "disclaimer03": "NO SERAN",
+        "disclaimer04": "guardados)",
+        "userCreated": "Registro de Usuario exitoso",
+        "errors": {
+            "userError": "Solo letras, numeros o (-, _, .)",
+            "userRequired": "Nombre de Usuario requerido",
+            "enterEmail": "Ingresa un Email valido",
+            "userLength": "Ingresa de 2 a 24 caracteres",
+            "passwordLength": "Ingresa de 8 a 32 caracteres",
+            "passwordNoMatch": "Las Contraseñas no coinciden",
+            "userNotAvailable": "Nombre de Usuario No disponible",
+            "emailNotAvailable": "El Email ya se encuentra registrado"
+        }
+    },
+    "language": "es",
+    "API": {
+        "errors": {
+            "generic": "Hubo un error. Intenta de nuevo!!!",
+            "onGetUserData": "Error obteniendo datos de Usuario. Intenta de nuevo!!!",
+            "onUnregUserReconnect": "Error Reconectando Usuario. Intenta de nuevo!!!"
+        }
+    },
+    "toast": {
+        "newMessage": "Nuevo mensaje de: ",      
+        "newRequest": "Nueva solicitud de: ",
+        "sentRequest": "Solicitud Enviada",
+        "requestExists": "Tienes una solitud pendiente de este Usuario"
+    },
+    "requests": {
+        "noPending": "No tienes Solicitudes Pendientes",
+        "errors": {
+            "onGetRequests": "Hubo un error obteniendo las Solicitudes",
+            "onAccept": "Error al Aceptar Solicitud. Intenta de nuevo!!!",
+            "onReject": "Error al Rechazar Solicitud. Intenta de nuevo!!!",
+            "onSendRequest": "Error al Enviar Solicitud. Intenta de nuevo!!!"
+        }
+    }
+}

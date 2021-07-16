@@ -1,0 +1,32 @@
+REDUCER: {
+//this will BE selected username to OPEN chat and messages onClick
+    selectedContact: null, 
+//this will be ARRAY that will HOLD ALL chats with USERS
+    allChats: [],
+
+//ex. 
+allChats: [
+	{
+	  contact: 'user02', 
+	  messages: [{ date: '', sender: '', message: ''}]
+	},
+	{
+	  contact: 'privUser', 
+	  messages: [{ date: '', sender: '', message: ''}]
+	},
+	{
+	  contact: 'chrome', 
+	  messages: [{ date: '', sender: '', message: ''}]
+	},
+	...
+} 
+
+to AVOID duplicating react and redux states:
+-store selected CONTACT with whom is having CHAT on redux's selectedContact:
+-with that selectedContact create an OBJ with message DATA to store in messages ARRAY  in selectedContacts OBJ in allChats ARRAY of OBJS
+
+-from that render messages FILTERING from contact KEY
+-to add Messages -> actions to find allChats OBJ from contact from selectedContact and UPDATE messages array which WILL BE RENDERED after that
+FOR THIS I CAN destructure messages FROM REDUX 
+
+UPON changing selectedContact EXTRACT messages ARRAY from allChats-> contact OBJ to then DESTRUCTURE and RENDER/ADD messages

@@ -1,0 +1,191 @@
+.mobileNav {
+    position: absolute;
+    // background: chocolate;
+    height: 100%;
+    left: -100%;
+    // width: 0;
+    transition: left 0.8s ease-out;
+    z-index: 11;
+    overflow-y: hidden;
+
+    &.show {
+        left: 0;
+        display: flex;
+        // width: 100%;
+    }
+
+    .contactsMobile {
+        display: none;
+        // display: flex;
+        flex: 3;
+        flex-direction: column;
+        // background: $blue;
+        background: $greyMessage;
+        border-right: 1px solid $primaryDarkHover;
+        // flex: 3;
+        overflow-y: auto;
+        min-height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+
+        @include tablet {
+            min-height: calc(100vh - 50px);
+            max-height: calc(100vh - 50px);
+        }
+
+        @include mobileBig {
+            // min-height: calc(100vh - 38px);
+            // max-height: calc(100vh - 38px);
+            display: flex;
+            max-width: 70vw;
+        }
+
+        .noContacts {
+            background: $primaryDarkHover;
+            margin: 18px 10px;
+            border-radius: 16px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include mobileBig {
+                margin: 10px 10px;
+                border-radius: $borRadMob;
+                padding: 4px 8px;
+            }
+
+            p {
+                font-size: 2.2rem;
+                text-align: center;
+                color: $primaryDark;
+            }
+        }
+
+        .contactsHeading {
+            background-color: $primaryDark;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+            border-bottom: 1px solid $red;
+            border-top: 1px solid $red;
+            // border-bottom: 1px solid $white;
+
+            @include mobileBig {
+                padding: 6px 0;
+            }
+
+            h2 {
+                color: $white;
+                font-size: 2.2rem;
+                // margin-bottom: 8px;
+            }
+
+            input {
+                margin-top: 8px;
+                outline: none;
+                border: none;
+                padding: 4px 8px;
+                background: $white;
+                color: $blue;
+                font-size: 1.6rem;
+                border-radius: 4px;
+                @include placeholder-style($blue);
+                max-width: 80%;
+
+                @include mobileBig {
+                    margin-top: 6px;
+                    padding: 4px 4px;
+                }
+            }
+        }
+    }
+
+    .onlineMobile {
+        display: none;
+        flex-direction: column;
+        background: $greyMessage;
+        flex: 3;
+        overflow-y: auto;
+        min-height: calc(100vh - 60px);
+        max-height: calc(100vh - 60px);
+        border-left: 1px solid $primaryDarkHover;
+
+        @include tablet {
+            min-height: calc(100vh - 50px);
+            max-height: calc(100vh - 50px);
+        }
+
+        @include mobileBig {
+            // min-height: calc(100vh - 38px);
+            // max-height: calc(100vh - 38px);
+            display: flex;
+        }
+
+        .noContacts {
+            background: $primaryDarkHover;
+            margin: 18px 10px;
+            border-radius: 16px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            @include tablet {
+                margin: 10px 8px;
+                padding: 6px 10px;
+            }
+
+            @include mobileBig {
+                margin: 10px 10px;
+                border-radius: $borRadMob;
+                padding: 4px 8px;
+            }
+
+            p {
+                font-size: 2.2rem;
+                text-align: center;
+                color: $primaryDark;
+            }
+        }
+
+        .onlineHeading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 0;
+            border-top: 1px solid $red;
+            border-bottom: 1px solid $red;
+            background: $primaryDark;
+
+            @include mobileBig {
+                padding: 6px 0;
+            }
+
+            h2 {
+                color: $white;
+                font-size: 2.2rem;
+            }
+
+            input {
+                margin-top: 8px;
+                outline: none;
+                border: none;
+                padding: 4px 8px;
+                background: $white;
+                color: $blue;
+                font-size: 1.6rem;
+                border-radius: 4px;
+                @include placeholder-style($blue);
+                max-width: 80%;
+
+                @include mobileBig {
+                    margin-top: 6px;
+                    padding: 4px 4px;
+                }
+            }
+        }
+    }
+}

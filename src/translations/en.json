@@ -1,0 +1,140 @@
+{
+    "header": {
+        "login": "Login",
+        "signup": "Sign Up",
+        "logout": "Log Out",
+        "signout": "Sign Out",
+        "isTyping": "typing...",
+        "contacts": "Contacts",
+        "profile": "Profile",
+        "chatWith": "Chat with: ",
+        "requests": "Requests",
+        "close": "Close"
+    },
+    "error": {
+        "opsGotLost": "Ops!!! You got lost...",
+        "goBack": "Go Back"
+    },
+    "roomContacts": {
+        "contacts": "Contacts",
+        "createAccount": "Create Account to Add Contacts",
+        "noOnlineContacts": "You have no Contacts Online",
+        "search": "Search Contacts"
+    },
+    "roomOnline": {
+        "online": "Online",
+        "noOneOnline": "No one is Online",
+        "search": "Search Users"
+    },
+    "userItem": {
+        "block": "Block",
+        "unblock": "Unblock",
+        "delete": "Delete",
+        "acceptRequest": "Confirm",
+        "rejectRequest": "Delete"
+    },
+    "contacts": {
+        "contacts": "Contacts",
+        "blocked": "Blocked",
+        "search": "Search...",
+        "errors": {
+            "onGetContacts": "Error fetching Contacts",
+            "onBlock": "Error Blocking Contact. Try Again!!!",
+            "onUnblock": "Error Unblocking Contact. Try Again!!!",
+            "onDelete": "Error Deleting Contact. Try Again!!!"
+        }
+    },
+    "login": {
+        "login": "Login",
+        "userOrEmail": "Username or Email",
+        "password": "Password",
+        "errors": {
+            "enterUserOrEmail": "Enter username or email",
+            "enterPassword": "Enter password",
+            "invalidLogin": "Invalid Username or Password"
+        }
+    },
+    "main": {
+        "enterUserAccessEphemeral": "Enter Username and access Ephemeral Chat room*",
+        "chatsWont01": "* chats ",
+        "chatsWont02": "WON'T",
+        "chatsWont03": " be saved.",
+        "username": "Username",
+        "gotoRoom": "Go to Chat Room",
+        "errors": {
+            "userError": "Enter username. At least 3 characters",
+            "userInUse": "Username already in use"
+        }
+    },
+    "profile": {
+        "changeUsername": "Change Username",
+        "changePassword": "Change Password",
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "changeImage": "Change Profile Image",
+        "submit": "Submit",
+        "upload": "Upload",
+        "contacts": " Contacts",
+        "passwordChanged": "Password changed successfully!!!",
+        "errors": {
+            "onImageUpload": "Error Uploading Image. Try Again!!!",
+            "onImageRefresh": "Error fetching Image. Try Again!!!",
+            "onChangeUsername": "Username already in use",
+            "onChangePassword": "Password Not Valid",
+            "enterPassword": "Enter password",
+            "passwordNoMatch": "Passwords don't match",
+            "originalPasswordError": "Current Password is Wrong"
+        }
+    },
+    "room": {
+        "noMessages": "You have no Messages",
+        "beginningOfChat": "This is the beginning of your chat with ",
+        "typeMessage": "Type your Message...",
+        "send": "Send"
+    },
+    "signup": {
+        "createUser": "Create User*",
+        "username": "Username",
+        "password": "Password",
+        "repeatPassword": "Repeat Password",
+        "createAccount": "Create Account",
+        "disclaimer01": "*Registered users can add Contacts that will be saved but all Chats are ",
+        "disclaimer02": "(they",
+        "disclaimer03": "WON'T",
+        "disclaimer04": "be saved)", 
+        "userCreated": "Successful User Creation",
+        "errors": {
+            "userError": "Only letters, numbers or (-, _, .)",
+            "userRequired": "Username required",
+            "enterEmail": "Enter a valid Email",
+            "userLength": "Enter 2 to 24 characters",
+            "passwordLength": "Enter 8 to 32 characters",
+            "passwordNoMatch": "Passwords don't match",
+            "userNotAvailable": "Username not available",
+            "emailNotAvailable": "Email already registered"
+        }
+    },
+    "language": "en",
+    "API": {
+        "errors": {
+            "generic": "Something went wrong. Try again!!!",
+            "onGetUserData": "Error fetching User Data. Try Again!!!",
+            "onUnregUserReconnect": "Error Reconnecting Username. Try again!!!"
+        }
+    },
+    "toast": {
+        "newMessage": "New message from: ",      
+        "newRequest": "New request from: ",
+        "sentRequest": "Request Sent",
+        "requestExists": "Theres a pending request for this User"
+    },
+    "requests": {
+        "noPending": "You have no pending Requests",
+        "errors": {
+            "onGetRequests": "Error Fetching Requests",
+            "onAccept": "Error on Accepting Request. Try Again!!!",
+            "onReject": "Error on Rejecting Request. Try Again!!!",
+            "onSendRequest": "Error sending Request. Try Again!!!"
+        }
+    }
+}

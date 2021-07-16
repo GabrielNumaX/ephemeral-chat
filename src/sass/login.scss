@@ -1,0 +1,131 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    background: $white;
+    flex: 1;
+    padding: 20px 40px;
+
+    h2 {
+        color: $primaryDark;
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+
+        @include tablet {
+            margin-bottom: 20px;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: $blue;
+        padding: 30px 20px;
+        border-radius: 4px;
+        box-shadow: $boxShadowPrimary;
+        min-width: 30%;
+
+        @include tablet {
+            padding: 15px 15px;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            position: relative;
+            width: 100%;
+            // background: green;
+
+            label {
+                color: $yellow;
+                font-size: 1.6rem;
+                margin-bottom: 4px;
+                padding-left: 8px;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                @extend %inputs;
+                @include placeholder-style($blue);
+            }
+
+            // .loginInput {
+            //     @extend %inputs;
+            //     @include placeholder-style($blue);
+            // }
+
+            .eyeIcon {
+                position: absolute;
+                font-size: 1.6rem;
+                color: $primaryDark;
+                right: 10px;
+                top: 32px;
+                cursor: pointer;
+
+                @include tablet {
+                    top: 27px;
+                    right: 5px;
+                }
+
+                @include mobileBig {
+                    top: 22px;
+                }
+            }
+
+            p {
+                //this is error
+                padding: 2px 8px 0;
+                font-size: 1.2rem;
+                color: $red;
+                font-weight: 700;
+            }
+        }
+
+        input[type="submit"] {
+            padding: 10px 18px;
+            margin-top: 20px;
+            max-width: 200px;
+            background: $primaryDark;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: $yellow;
+            border: 1px solid $yellow;
+            border-radius: 4px;
+            cursor: pointer;
+
+            @include tablet {
+                padding: 6px 10px;
+                margin-top: 10px;
+            }
+
+            @include mobileBig {
+                padding: 4px 8px;
+            }
+
+            &:hover {
+                background-color: $yellow;
+                color: $primaryDark;
+            }
+        }
+    }
+}
+
+%inputs {
+    outline: none;
+    border: none;
+    padding: 4px 8px;
+    background: $white;
+    color: $blue;
+    font-size: 1.6rem;
+    // border-bottom: 2px solid $blue;
+    // box-shadow: $boxShadowPrimary;
+    // border-top-left-radius: 4px;
+    // border-top-right-radius: 4px;
+    border-radius: 4px;
+    width: 100%;
+    // background: $red;
+}

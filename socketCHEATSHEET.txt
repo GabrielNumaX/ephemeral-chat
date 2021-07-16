@@ -1,0 +1,34 @@
+SERVER SEND
+-send event to client
+	io
+
+-send to EVERY client
+	io.emit
+
+-send to ONE client
+	io.to(sockedId).emit
+
+SERVER RECEIVE from client
+
+socket.on(eventName, data => {
+  console.log(data)
+})
+
+EXAMPLE THAT HAS CALLBACK FROM CLIENT
+
+socket.on(EVENT, (user, callback) => {
+	if(user) 
+		callback({error: 'user taken'})
+	else {
+  		callback({error: false})
+	}	
+})
+---------------------------------
+CLIENT
+-SEND TO SERVER
+
+//callback gets executed on FRONTEND after response from server
+socket.emit(event, data, [callback])
+
+-RECEIVE FROM SERVER
+socket.on

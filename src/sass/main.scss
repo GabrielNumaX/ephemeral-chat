@@ -1,0 +1,144 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: $white;
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // justify-content: center;
+        background: $white;
+        flex: 1;
+        padding: 40px;
+
+        h2 {
+            color: $blue;
+            font-size: 2.4rem;
+            font-weight: 400;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            p {
+                font-size: 1rem;
+                padding: 5px 0;
+                // color: $yellow;
+
+                span {
+                    color: $red;
+                }
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            // background: white;
+            min-width: 50%;
+            padding: 10px 20px;
+
+            input[type="text"] {
+                outline: none;
+                border: none;
+                padding: 14px;
+                background: $yellow;
+                color: $blue;
+                font-size: 2.4rem;
+                border-bottom: 3px solid $blue;
+                box-shadow: $boxShadowPrimary;
+                border-top-left-radius: 4px;
+                border-top-right-radius: 4px;
+                width: auto;
+                max-width: 300px;
+
+                @include placeholder-style($red);
+
+                @include tablet {
+                    padding: 10px;
+                    max-width: 220px;
+                }
+
+                @include mobileBig {
+                    padding: 8px;
+                    max-width: 180px;
+                }
+            }
+
+            .errorDiv {
+                display: flex;
+                justify-content: center;
+                // background: chocolate;
+
+                p {
+                    //this is error
+                    padding: 2px 0 0;
+                    font-size: 1.2rem;
+                    color: $red;
+                    font-weight: 700;
+                }
+            }
+
+            .submitDiv {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // background: cornflowerblue;
+                margin-top: 30px;
+
+                @include mobileBig {
+                    margin-top: 40px;
+                }
+
+                input[type="submit"] {
+                    padding: 10px 18px;
+                    // margin-top: 10px;
+                    max-width: 200px;
+                    background: $primaryDark;
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    // color: $yellow;
+                    color: $white;
+                    border: none;
+                    // border: 1px solid $yellow;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    box-shadow: $boxShadowPrimary;
+
+                    @include tablet {
+                        padding: 10px 10px;
+                        // margin-top: 10px;
+                    }
+
+                    &:hover {
+                        // background-color: $yellow;
+                        // color: $primaryDark;
+                        // color: $white;
+                        color: $yellow;
+                        // background: $blue;
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        background: $primaryDark;
+        height: 30px;
+        color: $yellow;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            color: $yellow;
+            text-decoration: none;
+            font-size: 1.4rem;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* this is to implement REM unit 1 rem = 10px
+then I can add media queries for html and change sizes globally and proportionally */
+html {
+  font-size: 62.5%; /* 62.5% of 16px = 10px */
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 50%; /* 8px -> 6.25 x 8 */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 37.5%; /* 6px -> 6.25 x 6*/
+  }
+}
+
