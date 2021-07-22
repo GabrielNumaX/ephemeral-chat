@@ -54,6 +54,20 @@ module.exports = function async(socket) {
         // can ADD default values in PARAMS
         // overwrite them from REGIS users
         addUser(usersConnected, user, socket.id, isRegistered);
+
+        // bug on language CHANGE it was ADDING same user AGAIN
+        //filter unique USERS with this
+
+        // const uniqueOnline = Array.from(new Set(allOnline.map(a => a.username)))
+        //     .map(user => {
+        //         return allOnline.find(a => a.username === user)
+        //     })
+
+        usersConnected = Array.from(new Set(usersConnected.map(a => a.socketId)))
+            .map(socketId => {
+                return usersConnected.find(a => a.socketId === socketId)
+            })
+
         io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
         // console.table(usersConnected);
     })

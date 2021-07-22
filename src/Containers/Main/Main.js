@@ -87,7 +87,7 @@ const Main = (props) => {
                 contactsNumber: null,
             }
             props.setUser(userData);
-            props.toggleHeader();
+            props.toggleHeader(true);
             props.history.push('/room');
         }
     }

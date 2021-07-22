@@ -202,7 +202,7 @@ const Room = (props) => {
         //     console.log('socket CLOSE');
         //     socket.close()
         // };
-    }, [socket, setToast, t, populateRequests]);
+    }, [socket, setToast, populateRequests, t]);
 
     const setAllContacts = props.setAllContacts;
 

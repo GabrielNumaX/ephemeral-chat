@@ -120,7 +120,7 @@ const Login = (props) => {
                 localStorage.setItem('user-image', data.image)
                 props.setUser(userObj);
 
-                props.toggleHeader();
+                props.toggleHeader(true);
                 props.setLogInOut(true);
                 props.populateRequests(data.requests);
 

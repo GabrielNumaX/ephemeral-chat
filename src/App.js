@@ -60,8 +60,8 @@ function App(props) {
   const setLogInOut = props.setLogInOut
   const populateRequests = props.populateRequests
 
-  const toggleHeaderCallback = useCallback(() => {
-    toggleHeader();
+  const toggleHeaderCallback = useCallback((bool) => {
+    toggleHeader(bool);
   }, [toggleHeader])
 
   const setUserCallback = useCallback((obj) => {
@@ -111,7 +111,7 @@ function App(props) {
             // props.setUser(userObj);
             setUserCallback(userObj);
             setLogInOutCallback(true)
-            toggleHeaderCallback();
+            toggleHeaderCallback(true);
 
             populateRequestCallback(data.requests);
           })
@@ -125,7 +125,7 @@ function App(props) {
             setUserCallback(userObj);
             setLogInOutCallback(false)
             // this was SETTING Header as USER REG
-            // toggleHeaderCallback();
+            toggleHeaderCallback(false);
 
             setToast({ showToast: true, message: t('API.errors.onGetUserData'), type: 'error' })
           })
@@ -184,7 +184,7 @@ function App(props) {
           contactsNumber: null,
         }
         setUserCallback(userData);
-        toggleHeaderCallback();
+        toggleHeaderCallback(true);
         history.push('/room');
       }
 

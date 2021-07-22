@@ -194,7 +194,7 @@ const Signup = (props) => {
             })
             .catch(error => {
 
-                console.log(error.response.status);
+                // console.log(error.response.status);
 
                 if (error.response.status === 406) {
 

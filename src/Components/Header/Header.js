@@ -41,7 +41,7 @@ const Header = (props) => {
             contactsNumber: null
         }
         props.setUser(data);
-        props.toggleHeader();
+        props.toggleHeader(false);
         props.setSelectedContact(null);
         // history.push('/');
         // this is to avoid getting NONE socket.id upon logout
@@ -60,7 +60,7 @@ const Header = (props) => {
         }
         props.setUser(data);
         props.setLogInOut(false);
-        props.toggleHeader();
+        props.toggleHeader(false);
         props.setSelectedContact(null);
         // history.push('/');
         window.location.reload();

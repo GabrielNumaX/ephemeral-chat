@@ -23,7 +23,7 @@ const initialState = {
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.TOGGLE_HEADER:
-            return { ...state, showHeader: !state.showHeader }
+            return { ...state, showHeader: action.payload }
         case actionTypes.SET_LOG_IN_OUT:
             return { ...state, isLoggedIn: action.payload }
         case actionTypes.SET_USER:

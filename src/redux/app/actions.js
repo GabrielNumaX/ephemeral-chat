@@ -1,9 +1,10 @@
 import * as actionTypes from './actionTypes';
 // import { SERVICES } from '../../services/services';
 
-export const toggleHeader = () => dispatch => {
+export const toggleHeader = (bool) => dispatch => {
     dispatch({
         type: actionTypes.TOGGLE_HEADER,
+        payload: bool,
     })
 }
 
