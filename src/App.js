@@ -1,21 +1,22 @@
 import { useEffect, useCallback } from 'react';
 import { SocketContext, socket } from './context/SocketContext';
 
-import { Switch, Route, Redirect } from 'react-router-dom';
+// import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import { withRouter } from "react-router-dom";
 
 import './sass/app.scss';
 
 import Main from './Containers/Main/Main';
-import Signup from './Containers/Signup/Signup';
-import Login from './Containers/Login/Login';
-import Room from './Containers/Room/Room';
-import Profile from './Containers/Profile/Profile';
-import Contacts from './Containers/Contacts/Contacts';
-import Requests from './Containers/Requests/Requests';
+// import Signup from './Containers/Signup/Signup';
+// import Login from './Containers/Login/Login';
+// import Room from './Containers/Room/Room';
+// import Profile from './Containers/Profile/Profile';
+// import Contacts from './Containers/Contacts/Contacts';
+// import Requests from './Containers/Requests/Requests';
 
-import Error from './Components/Error/Error';
+// import Error from './Components/Error/Error';
 
 import { useTranslation } from 'react-i18next';
 
@@ -212,7 +213,7 @@ function App(props) {
     <SocketContext.Provider value={socket}>
       <Switch>
 
-        <Route path="/" exact>
+        {/* <Route path="/" exact>
           {
             props.username ? <Redirect to="/room" /> : <Main />
           }
@@ -244,10 +245,11 @@ function App(props) {
 
         <Route path="/login" exact>
           <Login />
-        </Route>
+        </Route> */}
 
         <Route path="/*">
-          <Error />
+          {/* <Error /> */}
+          <Main/>
         </Route>
 
       </Switch>

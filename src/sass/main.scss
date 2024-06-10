@@ -13,26 +13,26 @@
         flex: 1;
         padding: 40px;
 
-        h2 {
-            color: $blue;
-            font-size: 2.4rem;
-            font-weight: 400;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+        // h2 {
+        //     color: $blue;
+        //     font-size: 2.4rem;
+        //     font-weight: 400;
+        //     display: flex;
+        //     flex-direction: column;
+        //     justify-content: center;
+        //     align-items: center;
+        //     text-align: center;
 
-            p {
-                font-size: 1rem;
-                padding: 5px 0;
-                // color: $yellow;
+        //     p {
+        //         font-size: 1rem;
+        //         padding: 5px 0;
+        //         // color: $yellow;
 
-                span {
-                    color: $red;
-                }
-            }
-        }
+        //         span {
+        //             color: $red;
+        //         }
+        //     }
+        // }
 
         form {
             display: flex;
@@ -140,5 +140,60 @@
             text-decoration: none;
             font-size: 1.4rem;
         }
+    }
+}
+
+.h1Moved {
+    font-size: 6rem;
+    padding-top: 6rem;
+    padding-bottom: 2.2rem;
+    color: $primaryDark;
+    text-align: center;
+
+    @include mobileBig {
+        padding-top: 24vh;
+        font-size: 4.2rem;
+    }
+}
+
+.h2Link { 
+    a {
+        color: $red;
+        text-decoration: none;
+        font-size: 4.4rem;
+        padding-top: 4.4rem;
+        text-align: center;
+
+        @include mobileBig {
+        font-size: 2.2rem;
+    }
+
+        &:visited {
+            color: $red;
+        }
+
+        &:active {
+            color: $red;
+        }
+    }
+
+
+}
+.divRedirected {
+    background-color: $blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3.3rem;
+    border-radius: 12px;
+}
+.pRedirected {
+    font-size: 3.3rem;
+    padding: 3.3rem;
+    color: $yellow;
+
+     @include mobileBig {
+        font-size: 1.8rem;
+        padding: 2.2rem;
     }
 }

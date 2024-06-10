@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
-import { SocketContext } from '../../context/SocketContext';
+import React from 'react';
+// import React, { useContext } from 'react';
+// import { SocketContext } from '../../context/SocketContext';
 import { Link, useLocation } from 'react-router-dom';
 
 import logo from '../../assets/logo.png';
@@ -9,20 +10,20 @@ import { toggleHeader, setUser, setLogInOut, setSelectedContact } from '../../re
 
 // import { useHistory } from "react-router-dom";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faUser } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCog, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { imageUrl } from '../../config/config';
+// import { imageUrl } from '../../config/config';
 
-import { USER_DISCONNECTED } from '../../socketEvents/socketEvents';
+// import { USER_DISCONNECTED } from '../../socketEvents/socketEvents';
 
-import ChangeLanguage from './ChangeLanguage';
+// import ChangeLanguage from './ChangeLanguage';
 
 import { useTranslation } from 'react-i18next'
 
 const Header = (props) => {
 
-    const socket = useContext(SocketContext);
+    // const socket = useContext(SocketContext);
 
     let location = useLocation();
 
@@ -30,41 +31,41 @@ const Header = (props) => {
 
     const { t } = useTranslation();
 
-    const handleLogoutUnregistered = () => {
+    // const handleLogoutUnregistered = () => {
 
-        socket.emit(USER_DISCONNECTED, props.username);
+    //     socket.emit(USER_DISCONNECTED, props.username);
 
-        localStorage.removeItem('ephemeral-username')
-        const data = {
-            username: null,
-            image: null,
-            contactsNumber: null
-        }
-        props.setUser(data);
-        props.toggleHeader(false);
-        props.setSelectedContact(null);
-        // history.push('/');
-        // this is to avoid getting NONE socket.id upon logout
-        // and keeping user from being UNABLE to login
-        // without REFRESHING browser
-        window.location.reload();
-    }
+    //     localStorage.removeItem('ephemeral-username')
+    //     const data = {
+    //         username: null,
+    //         image: null,
+    //         contactsNumber: null
+    //     }
+    //     props.setUser(data);
+    //     props.toggleHeader(false);
+    //     props.setSelectedContact(null);
+    //     // history.push('/');
+    //     // this is to avoid getting NONE socket.id upon logout
+    //     // and keeping user from being UNABLE to login
+    //     // without REFRESHING browser
+    //     window.location.reload();
+    // }
 
-    const handleLogoutRegistered = () => {
+    // const handleLogoutRegistered = () => {
 
-        localStorage.clear();
-        const data = {
-            username: null,
-            image: null,
-            contactsNumber: null
-        }
-        props.setUser(data);
-        props.setLogInOut(false);
-        props.toggleHeader(false);
-        props.setSelectedContact(null);
-        // history.push('/');
-        window.location.reload();
-    }
+    //     localStorage.clear();
+    //     const data = {
+    //         username: null,
+    //         image: null,
+    //         contactsNumber: null
+    //     }
+    //     props.setUser(data);
+    //     props.setLogInOut(false);
+    //     props.toggleHeader(false);
+    //     props.setSelectedContact(null);
+    //     // history.push('/');
+    //     window.location.reload();
+    // }
 
     // // console.log('HEADER isTyping', props.isTyping);
 
@@ -93,84 +94,6 @@ const Header = (props) => {
                     </div>
                 }
             </div>
-
-            {
-                !props.showHeader ?
-                    <nav>
-                        <Link to="/login">
-                            <p className="navP">{t('header.login')}</p>
-                        </Link>
-
-                        <Link to="/sign-up">
-                            <p className="navP">{t('header.signup')}</p>
-                        </Link>
-
-                        <ChangeLanguage />
-                    </nav>
-                    :
-                    props.isLoggedIn ?
-                        <nav>
-
-                            {/* here handle SETTINGS for REGISTERED user */}
-                            <div className="dropDownContainer">
-
-                                <div className="iconContainer">
-                                    <FontAwesomeIcon icon={faCog} className="icon"></FontAwesomeIcon>
-                                </div>
-
-                                <div className="dropDownWrapper">
-                                    <div className="dropDown">
-                                        <ul>
-                                            <li>
-                                                <div aria-label={props.username}>
-
-                                                    {
-                                                        props.userImage ?
-                                                            < img src={`${imageUrl}${props.userImage}`} alt="username"></img>
-                                                            :
-                                                            <FontAwesomeIcon icon={faUser} className="iconUser" />
-                                                    }
-                                                </div>
-
-                                                <p className="username">{props.username}</p>
-                                            </li>
-                                            <li>
-                                                <Link to="/contacts"
-                                                    onClick={() => props.setSelectedContact(null)}>{t('header.contacts')}</Link>
-                                            </li>
-                                            <li>
-                                                <Link to={`/profile/${props.username}`}
-                                                    onClick={() => props.setSelectedContact(null)}>{t('header.profile')}</Link>
-                                            </li>
-                                            <li className="liRequests">
-                                                {
-                                                    props.hasRequests && <div className="requests">{props.requestsAmount}</div>
-                                                }
-                                                <Link to="/requests"
-                                                    onClick={() => props.setSelectedContact(null)}>{t('header.requests')}</Link>
-                                            </li>
-                                            <li>
-                                                <p onClick={handleLogoutRegistered} className="logoutNav">{t('header.signout')}</p>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <ChangeLanguage />
-                        </nav>
-
-                        :
-                        <nav>
-                            {/* this won't be here for REGISTERED USER just DROPDOWN */}
-                            <p onClick={handleLogoutUnregistered} className="logout">{t('header.logout')}</p>
-
-                            <ChangeLanguage />
-                        </nav>
-            }
         </header >
     );
 }

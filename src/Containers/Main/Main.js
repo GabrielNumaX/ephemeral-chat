@@ -1,5 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { SocketContext } from '../../context/SocketContext';
+// import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+// import { SocketContext } from '../../context/SocketContext';
 
 import Header from '../../Components/Header/Header';
 
@@ -7,116 +8,142 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { toggleHeader, setLogInOut, setUser } from '../../redux/app/actions';
 
-import { VERIFY_USER, USER_CONNECTED } from '../../socketEvents/socketEvents';
+// import { VERIFY_USER, USER_CONNECTED } from '../../socketEvents/socketEvents';
 
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
 
 import Toast from '../../Components/Toast/Toast';
 
-const Main = (props) => {
+const Main = () => {
 
-    const socket = useContext(SocketContext);
-    const { t } = useTranslation();
-
-    const [user, setUser] = useState('');
-
-    const [userError, setUserError] = useState({
-        error: false,
-        message: ''
-    });
+    const [count, setCount] = useState(6);
 
     useEffect(() => {
 
-        if (user === '') {
+        const interval = setInterval(() => {
+            setCount(prevCount => (
+                prevCount - 1
+            ))
+        }, 1000);
 
-            setUserError({
-                error: false,
-                message: '',
-            })
+        if(count === 0) {
+            // window.location = "https://ephemeral.numax.me";
+            clearInterval(interval);
         }
 
-    }, [user])
+        return () => clearInterval(interval);
+    })
 
-    const validate = () => {
+    // const socket = useContext(SocketContext);
+    // const { t } = useTranslation();
 
-        if (user.length < 3 || !user.trim().length) {
+    // const [user, setUser] = useState('');
 
-            setUserError({
-                error: true,
-                message: t('main.errors.userError')
-            })
+    // const [userError, setUserError] = useState({
+    //     error: false,
+    //     message: ''
+    // });
 
-            return false;
-        }
-        else {
+    // useEffect(() => {
 
-            setUserError({
-                error: false,
-                message: '',
-            })
-            return true;
-        }
-    }
+    //     if (user === '') {
 
-    const verifyUser = () => {
+    //         setUserError({
+    //             error: false,
+    //             message: '',
+    //         })
+    //     }
 
-        socket.emit(VERIFY_USER, user, isVerified)
-    }
+    // }, [user])
 
-    const isVerified = (isUser) => {
+    // const validate = () => {
 
-        if (isUser) {
-            setUserError({
-                error: true,
-                message: t('main.errors.userInUse'),
-            })
-        }
-        else {
-            setUserError({
-                error: false,
-                message: '',
-            })
+    //     if (user.length < 3 || !user.trim().length) {
 
-            // handle CONNECTED HERE, 
-            socket.emit(USER_CONNECTED, { user });
-            localStorage.setItem('ephemeral-username', JSON.stringify(user));
+    //         setUserError({
+    //             error: true,
+    //             message: t('main.errors.userError')
+    //         })
 
-            const userData = {
-                username: user,
-                userImage: null,
-                contactsNumber: null,
-            }
-            props.setUser(userData);
-            props.toggleHeader(true);
-            props.history.push('/room');
-        }
-    }
+    //         return false;
+    //     }
+    //     else {
+
+    //         setUserError({
+    //             error: false,
+    //             message: '',
+    //         })
+    //         return true;
+    //     }
+    // }
+
+    // const verifyUser = () => {
+
+    //     socket.emit(VERIFY_USER, user, isVerified)
+    // }
+
+    // const isVerified = (isUser) => {
+
+    //     if (isUser) {
+    //         setUserError({
+    //             error: true,
+    //             message: t('main.errors.userInUse'),
+    //         })
+    //     }
+    //     else {
+    //         setUserError({
+    //             error: false,
+    //             message: '',
+    //         })
+
+    //         // handle CONNECTED HERE, 
+    //         socket.emit(USER_CONNECTED, { user });
+    //         localStorage.setItem('ephemeral-username', JSON.stringify(user));
+
+    //         const userData = {
+    //             username: user,
+    //             userImage: null,
+    //             contactsNumber: null,
+    //         }
+    //         props.setUser(userData);
+    //         props.toggleHeader(true);
+    //         props.history.push('/room');
+    //     }
+    // }
 
 
 
-    const handleGoToRoom = (e) => {
-        e.preventDefault();
+    // const handleGoToRoom = (e) => {
+    //     e.preventDefault();
 
-        // here I should process user NOT registered to access ROOM
-        if (!validate()) {
+    //     // here I should process user NOT registered to access ROOM
+    //     if (!validate()) {
 
-            return;
-        }
+    //         return;
+    //     }
 
-        // check if username its on BACKEND usersConnected ARRAY
-        verifyUser();
-    }
+    //     // check if username its on BACKEND usersConnected ARRAY
+    //     verifyUser();
+    // }
 
     return (
         <div className="container">
             <Header />
             <div className="main">
-                <h2>
+
+                <h1 className='h1Moved'>Ephemeral has moved to:</h1>
+                <h2 className='h2Link'><a href='https://ephemeral.numax.me' rel="noopener noreferrer">https://ephemeral.numax.me</a></h2>
+                
+                <div className='divRedirected'>
+
+                <p className='pRedirected'>You will be redirected in {count} seconds...</p>
+                </div>
+                {/* <h2>
                     {t('main.enterUserAccessEphemeral')}
                     <p>{t('main.chatsWont01')}<span>{t('main.chatsWont02')}</span>{t('main.chatsWont03')}</p>
-                </h2>
+                </h2> */}
 
-                <form onSubmit={handleGoToRoom}>
+                {/* <form onSubmit={handleGoToRoom}>
                     <input type="text" placeholder={t('main.username')}
                         onChange={(e) => setUser(e.target.value)}
                         value={user}
@@ -131,7 +158,7 @@ const Main = (props) => {
                         <input type="submit" value={t('main.gotoRoom')}></input>
                     </div>
 
-                </form>
+                </form> */}
 
             </div>
 
