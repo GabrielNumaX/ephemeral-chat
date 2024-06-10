@@ -1,15 +1,16 @@
 import React, { useState, useContext } from 'react';
-import Header from '../../Components/Header/Header';
+import { connect } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
+// import { withRouter } from 'react-router';
+
 import { SocketContext } from '../../context/SocketContext';
-
 import { USER_CONNECTED } from '../../socketEvents/socketEvents';
-
-import { withRouter } from 'react-router';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
-import { connect } from 'react-redux';
 import {
     toggleHeader,
     setLogInOut,
@@ -18,17 +19,17 @@ import {
     populateRequests,
 } from '../../redux/app/actions';
 
-
 import { SERVICES } from '../../services/services';
 
-import { useTranslation } from 'react-i18next';
-
+import Header from "../../Components/Header/Header";
 import Toast from '../../Components/Toast/Toast';
 import Loader from '../../Components/Loader/Loader';
 
 const Login = (props) => {
 
     const socket = useContext(SocketContext);
+    
+    let navigate = useNavigate();
 
     const { t } = useTranslation();
 
@@ -125,7 +126,8 @@ const Login = (props) => {
                 props.populateRequests(data.requests);
 
                 socket.emit(USER_CONNECTED, { user: data.username, isRegistered: true });
-                props.history.push('/room')
+                // props.history.push('/room')
+                navigate('/room', { replace:true })
             })
             .catch((error) => {
 
@@ -195,11 +197,19 @@ const Login = (props) => {
 
 // export default Login;
 
-export default withRouter(connect(null,
+export default connect(null,
     {
         toggleHeader,
         setLogInOut,
         setUser,
         setToast,
         populateRequests,
-    })(Login));
+    })(Login);
+// export default withRouter(connect(null,
+//     {
+//         toggleHeader,
+//         setLogInOut,
+//         setUser,
+//         setToast,
+//         populateRequests,
+//     })(Login));

@@ -1,22 +1,24 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { SocketContext } from '../../context/SocketContext';
-
-import Header from '../../Components/Header/Header';
-
-import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { toggleHeader, setLogInOut, setUser } from '../../redux/app/actions';
-
-import { VERIFY_USER, USER_CONNECTED } from '../../socketEvents/socketEvents';
-
 import { useTranslation } from 'react-i18next';
 
+// import { withRouter } from 'react-router';
+import { useNavigate } from 'react-router';
+
+import { SocketContext } from '../../context/SocketContext';
+import { toggleHeader, setLogInOut, setUser } from '../../redux/app/actions';
+import { VERIFY_USER, USER_CONNECTED } from '../../socketEvents/socketEvents';
+
+
+import Header from '../../Components/Header/Header';
 import Toast from '../../Components/Toast/Toast';
 
 const Main = (props) => {
 
     const socket = useContext(SocketContext);
     const { t } = useTranslation();
+
+    let navigate = useNavigate();
 
     const [user, setUser] = useState('');
 
@@ -88,7 +90,8 @@ const Main = (props) => {
             }
             props.setUser(userData);
             props.toggleHeader(true);
-            props.history.push('/room');
+            // props.history.push('/room');
+            navigate('/room', { replace: true });
         }
     }
 
@@ -141,7 +144,4 @@ const Main = (props) => {
     );
 }
 
-
-// export default withRouter(Main);
-
-export default withRouter(connect(null, { toggleHeader, setLogInOut, setUser })(Main));
+export default connect(null, { toggleHeader, setLogInOut, setUser })(Main);

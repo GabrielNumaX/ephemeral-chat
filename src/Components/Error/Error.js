@@ -1,14 +1,16 @@
 import React from 'react';
+// import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 
 import Header from '../Header/Header';
-import { useHistory } from "react-router-dom";
 
 const Error = () => {
 
-    let history = useHistory();
+    // let history = useHistory();
+    let navigate = useNavigate();
 
     return (
         <div className="container">
@@ -27,7 +29,7 @@ const Error = () => {
                         Ops!!! You got lost...
                     </h3>
 
-                    <p onClick={() => history.goBack()}>Go Back</p>
+                    <p onClick={() => navigate(-1)}>Go Back</p>
                 </div>
 
             </div>

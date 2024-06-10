@@ -1,11 +1,19 @@
 import { useEffect, useCallback } from 'react';
 import { SocketContext, socket } from './context/SocketContext';
+import axios from "axios";
+import { connect } from "react-redux";
+import { useTranslation } from "react-i18next";
 
-import { Switch, Route, Redirect } from 'react-router-dom';
+// import { Switch, Route, Redirect } from 'react-router-dom';
+import { 
+  // BrowserRouter,
+  Routes, 
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 
-import { withRouter } from "react-router-dom";
-
-import './sass/app.scss';
+// import { withRouter } from "react-router-dom";
 
 import Main from './Containers/Main/Main';
 import Signup from './Containers/Signup/Signup';
@@ -14,25 +22,17 @@ import Room from './Containers/Room/Room';
 import Profile from './Containers/Profile/Profile';
 import Contacts from './Containers/Contacts/Contacts';
 import Requests from './Containers/Requests/Requests';
-
 import Error from './Components/Error/Error';
 
-import { useTranslation } from 'react-i18next';
-
-import { connect } from 'react-redux';
-
 import { toggleHeader, setUser, setLogInOut, setToast } from './redux/app/actions';
-
 import { backendUrl } from './config/config';
-import axios from 'axios';
-
 import { SERVICES } from './services/services';
-
 import { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED } from './socketEvents/socketEvents';
-
 import {
   populateRequests,
 } from './redux/app/actions';
+
+import "./sass/app.scss";
 
 axios.interceptors.request.use(async (config) => {
 
@@ -54,6 +54,8 @@ axios.interceptors.request.use(async (config) => {
 function App(props) {
 
   const { t } = useTranslation();
+  
+  let navigate = useNavigate();
 
   const toggleHeader = props.toggleHeader
   const setUser = props.setUser;
@@ -85,7 +87,7 @@ function App(props) {
   }, []);
 
   const setToast = props.setToast;
-  const history = props.history;
+  // const history = props.history;
 
   useEffect(() => {
 
@@ -185,7 +187,8 @@ function App(props) {
         }
         setUserCallback(userData);
         toggleHeaderCallback(true);
-        history.push('/room');
+        // history.push('/room');
+        navigate('/room', { replace: true })
       }
 
       verifyUser();
@@ -197,7 +200,8 @@ function App(props) {
     populateRequestCallback,
     t,
     setToast,
-    history,
+    // history,
+    navigate,
   ])
 
   // this removes UNREGISTERED user on browser close OR REFRESH <-> SIDE EFFECT
@@ -210,47 +214,57 @@ function App(props) {
 
   return (
     <SocketContext.Provider value={socket}>
-      <Switch>
+      {/* <BrowserRouter> */}
+        <Routes>
+          <Route path="/" exact>
+            {props.username ? <Navigate to="/room" replace={true} /> : <Main />}
+          </Route>
 
-        <Route path="/" exact>
-          {
-            props.username ? <Redirect to="/room" /> : <Main />
-          }
-        </Route>
+          <Route path="/room" exact>
+            {props.username || (props.username && props.isLoggedIn) ? (
+              <Room />
+            ) : (
+              <Navigate to="/" replace={true} />
+            )}
+          </Route>
 
-        <Route path="/room" exact>
+          <Route path="/contacts" exact>
+            {props.isLoggedIn ? (
+              <Contacts />
+            ) : (
+              <Navigate to="/" replace={true} />
+            )}
+          </Route>
 
-          {
-            props.username || (props.username && props.isLoggedIn) ? <Room /> : <Redirect to="/" />
-          }
-        </Route>
+          <Route path="/profile/:username">
+            {props.isLoggedIn ? (
+              <Profile />
+            ) : (
+              <Navigate to="/" replace={true} />
+            )}
+          </Route>
 
-        <Route path="/contacts" exact>
-          {props.isLoggedIn ? <Contacts /> : <Redirect to="/" />}
-        </Route>
+          <Route path="/requests" exact>
+            {props.isLoggedIn ? (
+              <Requests />
+            ) : (
+              <Navigate to="/" replace={true} />
+            )}
+          </Route>
 
-        <Route path="/profile/:username">
-          {props.isLoggedIn ? <Profile /> : <Redirect to="/" />}
-        </Route>
+          <Route path="/sign-up" exact>
+            <Signup />
+          </Route>
 
-        <Route path="/requests" exact>
-          {props.isLoggedIn ? <Requests /> : <Redirect to="/" />}
-        </Route>
+          <Route path="/login" exact>
+            <Login />
+          </Route>
 
-
-        <Route path="/sign-up" exact>
-          <Signup />
-        </Route>
-
-        <Route path="/login" exact>
-          <Login />
-        </Route>
-
-        <Route path="/*">
-          <Error />
-        </Route>
-
-      </Switch>
+          <Route path="/*">
+            <Error />
+          </Route>
+        </Routes>
+      {/* </BrowserRouter> */}
     </SocketContext.Provider>
   );
 }
@@ -264,11 +278,19 @@ const mapStateToProps = (state) => {
 }
 
 // export default App;
-export default withRouter(connect(mapStateToProps,
+export default connect(mapStateToProps,
   {
     toggleHeader,
     setUser,
     setLogInOut,
     populateRequests,
     setToast,
-  })(App));
+  })(App);
+// export default withRouter(connect(mapStateToProps,
+//   {
+//     toggleHeader,
+//     setUser,
+//     setLogInOut,
+//     populateRequests,
+//     setToast,
+//   })(App));

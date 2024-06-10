@@ -258,62 +258,61 @@ const Room = (props) => {
     const onlineUsers = props.onlineUsers
 
     useEffect(() => {
+      // console.log('useFX filter CONTACTS/ONLINE');
 
-        // console.log('useFX filter CONTACTS/ONLINE');
+      if (Array.isArray(onlineUsers) && onlineUsers.length) {
+        // console.log('onlineUSERS isARRAY');
 
-        if (Array.isArray(onlineUsers) && onlineUsers.length) {
+        if (Array.isArray(contacts) && contacts.length) {
+          // console.log('contacts isARRAY');
 
-            // console.log('onlineUSERS isARRAY');
+          let allOnline = [];
 
-            if (Array.isArray(contacts) && contacts.length) {
+          contacts.forEach((contact) => {
+            for (let i = 0; i < onlineUsers.length; i++) {
+              if (contact.contactId.username === onlineUsers[i].username) {
+                const onlineObj = {
+                  username: contact.contactId.username,
+                  image: contact.contactId.image,
+                  isBlocked: contact.isBlocked,
+                  isContact: contact.isContact,
+                  isOnline: onlineUsers[i].isOnline,
+                  isRegistered: onlineUsers[i].isRegistered,
+                  _id: contact.contactId._id,
+                  socketId: onlineUsers[i].socketId,
+                };
 
-                // console.log('contacts isARRAY');
-
-                let allOnline = [];
-
-                contacts.forEach(contact => {
-
-                    for (let i = 0; i < onlineUsers.length; i++) {
-
-                        if (contact.contactId.username === onlineUsers[i].username) {
-
-                            const onlineObj = {
-                                username: contact.contactId.username,
-                                image: contact.contactId.image,
-                                isBlocked: contact.isBlocked,
-                                isContact: contact.isContact,
-                                isOnline: onlineUsers[i].isOnline,
-                                isRegistered: onlineUsers[i].isRegistered,
-                                _id: contact.contactId._id,
-                                socketId: onlineUsers[i].socketId,
-                            }
-
-                            allOnline = [...allOnline, onlineObj];
-                        }
-                        else {
-
-                            allOnline = [...allOnline, onlineUsers[i]]
-                        }
-                    }
-                })
-
-                // console.log({ allOnline });
-
-                allOnline.sort((a, b) => (a.isContact !== b.isContact) ? 1 : ((!a.isContact !== b.isContact) ? -1 : 0))
-
-                // console.log('sorted');
-                // console.log({ allOnline })
-
-                // this is to remove DUPLICATES username's
-                const uniqueOnline = Array.from(new Set(allOnline.map(a => a.username)))
-                    .map(user => {
-                        return allOnline.find(a => a.username === user)
-                    })
-
-                setOnlineUsersCallback(uniqueOnline)
+                allOnline = [...allOnline, onlineObj];
+              } else {
+                allOnline = [...allOnline, onlineUsers[i]];
+              }
             }
-        }
+          });
 
+          // console.log({ allOnline });
+
+          allOnline.sort((a, b) =>
+            a.isContact !== b.isContact
+              ? 1
+              : !a.isContact !== b.isContact
+              ? -1
+              : 0
+          );
+
+          // console.log('sorted');
+          // console.log({ allOnline })
+
+          // this is to remove DUPLICATES username's
+          const uniqueOnline = Array.from(
+            new Set(allOnline.map((a) => a.username))
+          ).map((user) => {
+            return allOnline.find((a) => a.username === user);
+          });
+
+          setOnlineUsersCallback(uniqueOnline);
+        }
+      }
+      // eslint-disable-next-line
     }, [socket, contacts, onlineUserAdded, setOnlineUsersCallback]);
 
     // const { setToast } = props;
