@@ -41,6 +41,8 @@ const Main = (props) => {
 
     const validate = () => {
 
+        console.log('validate()');
+
         if (user.length < 3 || !user.trim().length) {
 
             setUserError({
@@ -62,10 +64,14 @@ const Main = (props) => {
 
     const verifyUser = () => {
 
+        console.log('verifyUser');
+
         socket.emit(VERIFY_USER, user, isVerified)
     }
 
     const isVerified = (isUser) => {
+
+        console.log({isUser});
 
         if (isUser) {
             setUserError({
@@ -103,6 +109,7 @@ const Main = (props) => {
         // here I should process user NOT registered to access ROOM
         if (!validate()) {
 
+            console.log('!validate()');
             return;
         }
 
