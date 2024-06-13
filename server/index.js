@@ -2,8 +2,12 @@ require('express-async-errors');
 const error = require('./middleware/asyncErrors');
 require('dotenv').config();
 const express = require('express');
+const cors = require("cors");
+const path = require("path");
+const { Server } = require("socket.io");
+const socketManager = require('./socketManager/socketManager');
 
-const checkJwt = require('./middleware/tokenCheck');
+// const checkJwt = require('./middleware/tokenCheck');
 
 require('./db/db');
 
@@ -15,16 +19,29 @@ const app = express();
 
 const http = require('http');
 const server = http.createServer(app);
-const { Server } = require("socket.io");
+
 // this is IMPORTANT line 66 export NOT WORKING
-const io = module.exports = new Server(server, {
-  cors: 'http://localhost:3000'
+// const io = module.exports = new Server(server, {
+//   cors: {
+//     origin: process.env.NODE_ENV === "production" ? false : ['http://localhost:3000'],
+//   },
+//   credentials: true,
+// });
+const io = new Server(server, {
+  cors: {
+    origin: process.env.NODE_ENV === "production" ? false : ['http://localhost:3000'],
+  },
+  credentials: true,
 });
 
-const cors = require('cors');
-const path = require('path');
+// console.log('SERVER io');
+// console.log({io});
 
-const socketManager = require('./socketManager/socketManager');
+io.on("connection", socketManager);
+// io.on("connection", () => {
+//   console.log('SOCKET CONNECTED')
+// });
+
 
 const PORT = parseInt(process.env.PORT, 10) || 3030;
 const dev = process.env.NODE_ENV !== "production";
@@ -58,7 +75,7 @@ app.get('/uploads/:fileName',
     });
   })
 
-io.on('connection', socketManager);
+
 
 // // this works on DEV ENV
 // app.use(express.static(path.join(__dirname, '..', 'build')));
@@ -90,4 +107,7 @@ server.listen(PORT, () => {
   console.log(`listening on http://localhost:${PORT}`);
 });
 
-// module.exports = io;
+// module.exports = { io }
+// module.exports = io; 
+
+

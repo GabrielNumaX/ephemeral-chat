@@ -1,154 +1,164 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+import React, { useState, useContext, useEffect } from "react";
+import { connect } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 // import { withRouter } from 'react-router';
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 
-import { SocketContext } from '../../context/SocketContext';
-import { toggleHeader, setLogInOut, setUser } from '../../redux/app/actions';
-import { VERIFY_USER, USER_CONNECTED } from '../../socketEvents/socketEvents';
+import { SocketContext } from "../../context/SocketContext";
+import { toggleHeader, setLogInOut, setUser } from "../../redux/app/actions";
+import { VERIFY_USER, USER_CONNECTED } from "../../socketEvents/socketEvents";
 
-
-import Header from '../../Components/Header/Header';
-import Toast from '../../Components/Toast/Toast';
+import Header from "../../Components/Header/Header";
+import Toast from "../../Components/Toast/Toast";
 
 const Main = (props) => {
+  const socket = useContext(SocketContext);
+  const { t } = useTranslation();
 
-    const socket = useContext(SocketContext);
-    const { t } = useTranslation();
+  console.log('Main RENDER');
+  console.log({props});
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
 
-    const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
 
-    const [userError, setUserError] = useState({
+  const [userError, setUserError] = useState({
+    error: false,
+    message: "",
+  });
+
+  // console.log('Main RENDER');
+  // console.log({socket});
+
+  useEffect(() => {
+    if (user === "") {
+      setUserError({
         error: false,
-        message: ''
-    });
+        message: "",
+      });
+    }
+  }, [user]);
 
-    useEffect(() => {
+  const validate = () => {
+    console.log("validate()");
 
-        if (user === '') {
+    if (user.length < 3 || !user.trim().length) {
+      setUserError({
+        error: true,
+        message: t("main.errors.userError"),
+      });
 
-            setUserError({
-                error: false,
-                message: '',
-            })
-        }
+      return false;
+    } else {
+      setUserError({
+        error: false,
+        message: "",
+      });
+      return true;
+    }
+  };
 
-    }, [user])
+  const verifyUser = () => {
+    console.log("verifyUser");
+    console.log({ user });
 
-    const validate = () => {
+    try {
+      socket.emit(VERIFY_USER, user, isVerified);
+    } catch (error) {
+      console.log({ error });
+    }
+  };
 
-        console.log('validate()');
+  const isVerified = (isUser) => {
+    console.log({ isUser });
 
-        if (user.length < 3 || !user.trim().length) {
+    if (isUser) {
+      setUserError({
+        error: true,
+        message: t("main.errors.userInUse"),
+      });
+    } else {
+      setUserError({
+        error: false,
+        message: "",
+      });
 
-            setUserError({
-                error: true,
-                message: t('main.errors.userError')
-            })
+      // handle CONNECTED HERE,
 
-            return false;
-        }
-        else {
+      try {
+        socket.emit(USER_CONNECTED, { user });
+      } catch (socketError) {
+        console.log({ socketError });
+      }
+      // socket.emit(USER_CONNECTED, user );
+      localStorage.setItem("ephemeral-username", JSON.stringify(user));
 
-            setUserError({
-                error: false,
-                message: '',
-            })
-            return true;
-        }
+      const userData = {
+        username: user,
+        userImage: null,
+        contactsNumber: null,
+      };
+
+      try {
+        props.setUser(userData);
+        props.toggleHeader(true);
+        // props.history.push('/room');
+        console.log("BEFORE navigate()");
+        navigate("/room", { replace: true });
+      } catch (propError) {
+        console.log({ propError });
+      }
+    }
+  };
+
+  const handleGoToRoom = (e) => {
+    e.preventDefault();
+
+    // here I should process user NOT registered to access ROOM
+    if (!validate()) {
+      console.log("!validate()");
+      return;
     }
 
-    const verifyUser = () => {
+    // check if username its on BACKEND usersConnected ARRAY
+    verifyUser();
+  };
 
-        console.log('verifyUser');
+  return (
+    <div className="container">
+      <Header />
+      <div className="main">
+        <h2>
+          {t("main.enterUserAccessEphemeral")}
+          <p>
+            {t("main.chatsWont01")}
+            <span>{t("main.chatsWont02")}</span>
+            {t("main.chatsWont03")}
+          </p>
+        </h2>
 
-        socket.emit(VERIFY_USER, user, isVerified)
-    }
-
-    const isVerified = (isUser) => {
-
-        console.log({isUser});
-
-        if (isUser) {
-            setUserError({
-                error: true,
-                message: t('main.errors.userInUse'),
-            })
-        }
-        else {
-            setUserError({
-                error: false,
-                message: '',
-            })
-
-            // handle CONNECTED HERE, 
-            socket.emit(USER_CONNECTED, { user });
-            localStorage.setItem('ephemeral-username', JSON.stringify(user));
-
-            const userData = {
-                username: user,
-                userImage: null,
-                contactsNumber: null,
-            }
-            props.setUser(userData);
-            props.toggleHeader(true);
-            // props.history.push('/room');
-            navigate('/room', { replace: true });
-        }
-    }
-
-
-
-    const handleGoToRoom = (e) => {
-        e.preventDefault();
-
-        // here I should process user NOT registered to access ROOM
-        if (!validate()) {
-
-            console.log('!validate()');
-            return;
-        }
-
-        // check if username its on BACKEND usersConnected ARRAY
-        verifyUser();
-    }
-
-    return (
-        <div className="container">
-            <Header />
-            <div className="main">
-                <h2>
-                    {t('main.enterUserAccessEphemeral')}
-                    <p>{t('main.chatsWont01')}<span>{t('main.chatsWont02')}</span>{t('main.chatsWont03')}</p>
-                </h2>
-
-                <form onSubmit={handleGoToRoom}>
-                    <input type="text" placeholder={t('main.username')}
-                        onChange={(e) => setUser(e.target.value)}
-                        value={user}
-                    ></input>
-                    {
-                        userError.error &&
-                        <div className="errorDiv">
-                            <p>{userError.message}</p>
-                        </div>
-                    }
-                    <div className="submitDiv">
-                        <input type="submit" value={t('main.gotoRoom')}></input>
-                    </div>
-
-                </form>
-
+        <form onSubmit={handleGoToRoom}>
+          <input
+            type="text"
+            placeholder={t("main.username")}
+            onChange={(e) => setUser(e.target.value)}
+            value={user}
+          ></input>
+          {userError.error && (
+            <div className="errorDiv">
+              <p>{userError.message}</p>
             </div>
+          )}
+          <div className="submitDiv">
+            <input type="submit" value={t("main.gotoRoom")}></input>
+          </div>
+        </form>
+      </div>
 
-            <Toast />
-
-        </div>
-    );
-}
+      <Toast />
+    </div>
+  );
+};
 
 export default connect(null, { toggleHeader, setLogInOut, setUser })(Main);

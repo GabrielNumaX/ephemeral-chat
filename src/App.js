@@ -94,8 +94,15 @@ function App(props) {
   );
 
   useEffect(() => {
+
+    console.log('useFX socket.connected', socket.connected);
     // socket CLEANUP to avoid componentWillUnmount WARNING
+    if(!socket.connected) {
+      console.log('useFX socket.connect()');
+      socket.connect();
+    }
     return () => {
+      console.log('App -> socket.close()');
       socket.close();
     };
   }, []);
@@ -231,6 +238,7 @@ function App(props) {
 
   const { username, isLoggedIn } = props;
 
+  console.log('App RENDER');
   return (
     <SocketContext.Provider value={socket}>
       <Routes>

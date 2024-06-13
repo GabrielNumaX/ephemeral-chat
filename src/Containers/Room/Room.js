@@ -168,7 +168,11 @@ const Room = (props) => {
                 })
         }
 
-        return isLoggedInProp ? getAllRequests() : null;
+        // return isLoggedInProp ? getAllRequests() : null;
+
+        if(isLoggedInProp) {
+            getAllRequests();
+        }
 
     }, [isLoggedInProp, populateRequests, setToast, t]);
 
@@ -225,7 +229,10 @@ const Room = (props) => {
                 })
         }
 
-        return isLoggedInProp ? getAllContacts() : null;
+        // return isLoggedInProp ? getAllContacts() : null;
+        if(isLoggedInProp) {
+            getAllContacts();
+        }
 
     }, [isLoggedInProp, setAllContacts, setToast, t]);
 

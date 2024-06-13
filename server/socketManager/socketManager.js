@@ -1,4 +1,4 @@
-const io = require('../index');
+// const io = require('../index');
 
 const userModel = require('../models/userModel');
 
@@ -19,7 +19,9 @@ let usersConnected = [];
 
 module.exports = function async(socket) {
 
-    // console.log('Socket ID BACKEND', socket.id);
+    console.log('Socket ID BACKEND', socket.id);
+    // console.log({socket});
+    // console.log({io});
 
     // verify USERNAME not TAKEN-> also REGISTERED users TODO
     socket.on(VERIFY_USER, async (username, callback) => {
@@ -49,7 +51,9 @@ module.exports = function async(socket) {
     // add verified USER
     socket.on(USER_CONNECTED, ({ user, isRegistered }) => {
 
-        // console.log({ USER_CONNECTED });
+        console.log({ USER_CONNECTED });
+        console.log(user);
+        console.log(isRegistered);
         // handle ADD user for REGISTERED
         // can ADD default values in PARAMS
         // overwrite them from REGIS users
@@ -68,8 +72,15 @@ module.exports = function async(socket) {
                 return usersConnected.find(a => a.socketId === socketId)
             })
 
-        io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+            try {
+
+                // io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+            socket.emit(SEND_ALL_ONLINE_USERS, usersConnected);
         // console.table(usersConnected);
+        }
+        catch(serverError) {
+            console.log({serverError});
+        }
     })
 
     // disconnect USER from Room->LogOut
@@ -93,7 +104,9 @@ module.exports = function async(socket) {
         // console.log('disconnect');
         usersConnected = removeById(usersConnected, socket.id);
         // console.table(usersConnected);
-        io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+
+        // io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+        socket.emit(SEND_ALL_ONLINE_USERS, usersConnected);
     })
 
     socket.on(IS_TYPING, ({ userTypingId, isTyping, userWhoIsTyping }) => {
