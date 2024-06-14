@@ -46,7 +46,7 @@ contactsController.contactGetAll = async (req, res) => {
 
 // handle REMOVE contacts for ContactId
 contactsController.contactRemove = async (req, res) => {
-    // contactIdVal
+
     const {
         contactId
     } = req.body;
@@ -83,7 +83,7 @@ contactsController.contactRemove = async (req, res) => {
 };
 
 contactsController.contactBlockUnblock = async (req, res) => {
-    // contactIdVal
+
     const {
         contactId,
         block
@@ -92,8 +92,6 @@ contactsController.contactBlockUnblock = async (req, res) => {
     const {
         user
     } = req;
-
-    // console.log('contactId', contactId);
 
     const userBlockUnblockContact = await userModel.findOneAndUpdate({
         '_id': user.id, 'contacts.contactId': contactId

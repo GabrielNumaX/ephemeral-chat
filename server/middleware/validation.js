@@ -45,32 +45,14 @@ const signUpVal = () => {
 const contactIdVal = () => {
 
     return [
-        // body('contactId').notEmpty().withMessage('Invalid Contact Data')
-        // .custom(id => {
-
-        //     console.log('ID VALIDATOR', id)
-        //     const isValid = isValidObjectId(id)
-
-        //     if(!isValid) return Promise.reject('Invalid Contact Data');
-        // })
         check('contactId').isMongoId(),
-
     ]
 }
 
 const requestIdVal = () => {
 
     return [
-        // body('contactId').notEmpty().withMessage('Invalid Contact Data')
-        // .custom(id => {
-
-        //     console.log('ID VALIDATOR', id)
-        //     const isValid = isValidObjectId(id)
-
-        //     if(!isValid) return Promise.reject('Invalid Contact Data');
-        // })
         check('requestId').isMongoId(),
-
     ]
 }
 
@@ -133,10 +115,7 @@ const requestUsernameVal = () => {
 };
 const valResult = (req, res, next) => {
 
-    // console.log('valResult');
-
     const error = validationResult(req).formatWith(({ msg }) => msg);
-
     const hasError = !error.isEmpty();
 
     if (hasError) {

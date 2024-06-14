@@ -1,6 +1,5 @@
 module.exports = function debounce(func, wait, immediate) {
 	var timeout;
-    // console.log('IS DEBOUNCING ON SERVER');
 	return function() {
 		var context = this, args = arguments;
 		var later = function() {

@@ -31,7 +31,6 @@ requestController.getRequests = async (req, res) => {
 // this HAS to BE PUT
 requestController.sendRequest = async (req, res) => {
 
-    // contactIdVal
     const {
         username
     } = req.body;
@@ -99,8 +98,6 @@ requestController.requestAccept = async (req, res) => {
     const request = await requestModel.findById(requestId);
 
     if (!request) return res.status(404).send({ message: 'No request found' });
-
-    // return res.status(200).send(request);
 
     // this can be request.senderId WITH NO POPULATE on request
     const sender = await userModel.findByIdAndUpdate(request.senderId, {

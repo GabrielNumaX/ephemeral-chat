@@ -19,7 +19,6 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 
-// this is IMPORTANT line 66 export NOT WORKING
 const io = module.exports = new Server(server, {
   cors: {
     origin: process.env.NODE_ENV === "production" ? false : ['http://localhost:3000'],
@@ -62,9 +61,7 @@ app.get('/uploads/:fileName',
     });
   })
 
-
-
-// // this works on DEV ENV
+// this works on DEV ENV
 // app.use(express.static(path.join(__dirname, '..', 'build')));
 
 // app.get('*', (req, res) => {
@@ -73,7 +70,6 @@ app.get('/uploads/:fileName',
 
 //   res.sendFile(path.join(__dirname, '..', 'build', 'index.html')) //relative path
 // })
-
 
 // this is for PROD ENV
 if (process.env.NODE_ENV === 'production') {
@@ -85,7 +81,6 @@ if (process.env.NODE_ENV === 'production') {
 
     res.sendFile(path.join(__dirname, '..', 'build', 'index.html')) //relative path
   })
-
 }
 
 app.use(error);

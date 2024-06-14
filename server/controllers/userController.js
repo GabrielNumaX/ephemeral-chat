@@ -12,21 +12,6 @@ userController.getUserData = async (req, res) => {
 
     const { user } = req;
 
-    // Model.find()
-    //     .populate({
-    //         path: 'replies',
-    //         populate: [{
-    //             path: 'user',
-    //             select: 'displayName username'
-    //         }, {
-    //             path: 'replies',
-    //             populate: {
-    //                 path: 'user',
-    //                 select: 'displayName username'
-    //             }
-    //         }]
-    //     }).exec(...
-
     const userData = await userModel.findById(user.id)
         .select('username image contactsNumber requests')
         // this DOES the trick for populating 
@@ -212,16 +197,14 @@ userController.userImageUpdate = async (req, res) => {
     const fileCheck = await userModel.findById(user.id)
         .select('image');
 
-    // console.log('fileCheck.image', fileCheck.image);
     // this checks that image is NOT null
     // so it has an image to delete
     // otherwise it saves image below
     if (fileCheck.image) {
         if (fs.existsSync(path.join(__dirname, '..', '..', fileCheck.image))) {
-            // console.log('FILE EXISTS -> DELETE');
+
             fs.unlink(path.join(__dirname, '..', '..', fileCheck.image), (err) => {
                 if (err) throw err;
-                // console.log('file deleted');
             })
         }
     }
