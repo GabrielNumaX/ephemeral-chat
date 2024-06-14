@@ -52,8 +52,6 @@ const Contacts = (props) => {
 
     useEffect(() => {
 
-        // console.log('useFX FILTER')
-
         if (Array.isArray(props.contacts) && props.contacts.length) {
 
             const filterBlocked = props.contacts.filter(item => {
@@ -73,10 +71,8 @@ const Contacts = (props) => {
 
     useEffect(() => {
 
-        // console.log('useFX setSEARCH')
-
         setSearchNoBlocked(contactsNoBlocked);
-        setSearchBlocked(contactsBlocked)
+        setSearchBlocked(contactsBlocked);
 
     }, [contactsNoBlocked, contactsBlocked]);
 
@@ -240,5 +236,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-// export default Contacts;
 export default connect(mapStateToProps, { setAllContacts, setToast })(Contacts);

@@ -6,9 +6,6 @@ const RoomContacts = (props) => {
 
     const { t } = useTranslation();
 
-    // console.log('ROOM CONTACTS');
-    // console.log(props.isMobile);
-    // // console.log(props.contacts);
     return (
         <div className={props.isMobile ? "contactsMobile" : "contacts"}>
             <div className="contactsHeading">
@@ -50,7 +47,6 @@ const RoomContacts = (props) => {
                                         <ContactItem key={item.contactId._id}
                                             name={item.contactId.username}
                                             hasPhoto={item.contactId.image}
-                                            // isLoggedIn={props.isLoggedIn}
                                             isOnline={item.isOnline}
                                             isContact={item.isContact}
                                             hover={false}

@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useHistory } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +8,6 @@ import Header from '../Header/Header';
 
 const Error = () => {
 
-    // let history = useHistory();
     let navigate = useNavigate();
 
     return (

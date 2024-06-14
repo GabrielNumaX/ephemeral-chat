@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -9,10 +10,8 @@ import {
     faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
-// import person from '../../assets/person.jpeg';
 import { imageUrl } from '../../config/config';
 
-import { useTranslation } from 'react-i18next';
 
 const UserItem = ({
     isBlocked,

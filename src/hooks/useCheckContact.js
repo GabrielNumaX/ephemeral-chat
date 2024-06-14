@@ -10,15 +10,7 @@ const useCheckContact = (userContact) => {
     const [hasMessages, setHasMessages] = useState(false);
     const [currentChat, setCurrentChat] = useState([]);
 
-    // console.log('CUSTOM HOOK');
-    // // console.log({ allChats });
-    // // console.log({ selectedContact });
-    // console.log({ userContact });
-
-
     useEffect(() => {
-
-        // console.log('useFX HOOK');
 
         const checkContact = allChats.find(item => item.contact === selectedContact);
 

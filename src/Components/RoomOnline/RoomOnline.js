@@ -15,9 +15,7 @@ const RoomOnline = ({
     isMobile = false,
 }) => {
 
-    const { t } = useTranslation()
-
-    // console.log('ROOM ONLINE');
+    const { t } = useTranslation();
 
     const [searchOnlineUsers, setSearchOnlineUsers] = useState([]);
 
@@ -72,11 +70,9 @@ const RoomOnline = ({
 
                     </div>
                     :
-                    // onlineUsers.map(item => {
                     searchOnlineUsers.map(item => {
 
                         if (item?.isBlocked) return null;
-
 
                         // here I handle NOT SHOWING CURRENT user on ONLINE LIST
                         if (item.username === username) return null;

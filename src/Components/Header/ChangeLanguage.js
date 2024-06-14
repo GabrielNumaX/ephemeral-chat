@@ -7,18 +7,14 @@ import usFlag from '../../assets/usFlag.jpg';
 import { useTranslation } from 'react-i18next'
 
 
-
-
 const ChangeLanguage = () => {
 
-    // const [language, setLanguage] = useState(localStorage.getItem('i18nextLng'))
     const { i18n } = useTranslation()
 
     const handleLanguageChange = (e) => {
-        // setLanguage(event.target.value)
         i18n.changeLanguage(e)
-        // console.log(e);
     }
+
     return (
         <div className="dropDownContainerChangeLang">
 

@@ -51,7 +51,7 @@ const getAllContacts = async () => {
 }
 
 const contactBlockUnblock = async (data) => {
-    // console.log(data);
+
     return await axios({
         method: 'put',
         url: '/contacts/blockNOT',
@@ -63,7 +63,7 @@ const contactBlockUnblock = async (data) => {
 }
 
 const contactDelete = async (data) => {
-    // console.log(data);
+
     return await axios({
         method: 'put',
         url: '/contacts/removeNOT',
@@ -74,9 +74,6 @@ const contactDelete = async (data) => {
 }
 
 const sendRequest = async (username) => {
-
-    // console.log('send REQUEST');
-    // console.log(username);
 
     return await axios({
         method: 'post',

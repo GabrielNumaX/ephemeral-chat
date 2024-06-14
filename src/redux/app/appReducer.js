@@ -59,8 +59,6 @@ const appReducer = (state = initialState, action) => {
                     ]
                 }
 
-                // allChats = [...allChats, obj];
-
                 return { ...state, allChats: [...state.allChats, obj] }
             }
             // contacts FOUND in allChats state
@@ -85,13 +83,11 @@ const appReducer = (state = initialState, action) => {
                         break;
                     }
                 }
+                
                 // here we UPDATE state for EXISTING contact
                 return { ...state, allChats: [...state.allChats] }
             }
-        // return { ...state, allChats: [...state.allChats, action.payload] }
         case actionTypes.SET_TOAST:
-            // return { ...state, toast: { ...action.payload } }
-
             // this handles SHOWING toast on receive MESSAGE for users NOT SELECTED
             if (action.payload.type === 'chat' && action.payload.message !== state.selectedContact) {
 

@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
-// import { withRouter } from 'react-router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 import { SocketContext } from '../../context/SocketContext';
 import { USER_CONNECTED } from '../../socketEvents/socketEvents';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 import {
     toggleHeader,
@@ -100,13 +98,11 @@ const Login = (props) => {
         // here I should process REGISTERED USER TO GO TO ROOM
         SERVICES.login(userData)
             .then(({ data }) => {
-                // console.log(data);
 
                 setLoading(false);
 
                 // here RECIEVE isRegistered from DB
                 // and emit to BACK with username to USER_CONNECTED
-
                 const contactsNumber = data.contactsNumber === 0 ? null : data.contactsNumber;
 
                 const userObj = {
@@ -126,7 +122,6 @@ const Login = (props) => {
                 props.populateRequests(data.requests);
 
                 socket.emit(USER_CONNECTED, { user: data.username, isRegistered: true });
-                // props.history.push('/room')
                 navigate('/room', { replace:true })
             })
             .catch((error) => {
@@ -195,8 +190,6 @@ const Login = (props) => {
     );
 }
 
-// export default Login;
-
 export default connect(null,
     {
         toggleHeader,
@@ -205,11 +198,3 @@ export default connect(null,
         setToast,
         populateRequests,
     })(Login);
-// export default withRouter(connect(null,
-//     {
-//         toggleHeader,
-//         setLogInOut,
-//         setUser,
-//         setToast,
-//         populateRequests,
-//     })(Login));

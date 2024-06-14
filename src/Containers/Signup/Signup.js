@@ -122,7 +122,7 @@ const Signup = (props) => {
     }
 
     const validateEmail = () => {
-        // [\w-\.]
+
         if (/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(userData.email)) {
 
             setEmailVal({
@@ -171,7 +171,6 @@ const Signup = (props) => {
         const userEmpty = validateUsername('isEmpty');
         const email = validateEmail();
         const pass = validatePassword();
-        // const passRep = passwordRepVal();
         const passRep = passwordRepValCallback();
 
         if (userEmpty && userValid && email && pass && passRep) {
@@ -194,20 +193,18 @@ const Signup = (props) => {
             })
             .catch(error => {
 
-                // console.log(error.response.status);
-
                 if (error.response.status === 406) {
 
                     setUserVal({
                         error: true,
                         message: t('signup.errors.userNotAvailable'),
-                    })
+                    });
 
                     props.setToast({
                         showToast: true,
                         message: t('signup.errors.userNotAvailable'),
                         type: 'error'
-                    })
+                    });
 
                     return;
                 }
@@ -225,8 +222,7 @@ const Signup = (props) => {
         e.preventDefault();
 
         if (!validateAll()) {
-
-            // alert('ERROR');
+            
             return;
         }
 
@@ -235,8 +231,7 @@ const Signup = (props) => {
         SERVICES.signup(userData)
             .then(res => {
 
-                setLoading(false)
-                // console.log(res.data);
+                setLoading(false);
 
                 setUserData({
                     username: '',
@@ -252,8 +247,7 @@ const Signup = (props) => {
                 })
             })
             .catch(error => {
-                setLoading(false)
-                // console.log(error);
+                setLoading(false);
 
                 if (error.response.status === 422) {
 
@@ -279,8 +273,6 @@ const Signup = (props) => {
         passwordRepValCallback();
 
     }, [passwordRepValCallback]);
-
-    // console.log({ isPassRepTouched })
 
     return (
 

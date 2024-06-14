@@ -1,8 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
-
-// import { withRouter } from 'react-router';
 import { useNavigate } from "react-router";
 
 import { SocketContext } from "../../context/SocketContext";
@@ -82,7 +80,6 @@ const Main = (props) => {
 
       props.setUser(userData);
       props.toggleHeader(true);
-      // props.history.push('/room');
       navigate("/room", { replace: true });
     }
   };

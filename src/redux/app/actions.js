@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-// import { SERVICES } from '../../services/services';
 
 export const toggleHeader = (bool) => dispatch => {
     dispatch({
@@ -17,7 +16,6 @@ export const setLogInOut = (bool) => dispatch => {
 
 export const setUser = (user) => dispatch => {
 
-    // console.log('setUSER -> REDUX', user);
     dispatch({
         type: actionTypes.SET_USER,
         payload: user,
@@ -100,47 +98,6 @@ export const closeToast = () => dispatch => {
         payload: data
     })
 }
-
-// THIS WON'T BE NEEDED
-
-// export const increaseRequests = () => dispatch => {
-
-//     dispatch({
-//         type: actionTypes.INCREASE_REQUESTS,
-//         payload: 1
-//     })
-// }
-
-// export const decreaseRequests = () => dispatch => {
-
-//     dispatch({
-//         type: actionTypes.DECREASE_REQUESTS,
-//         payload: 1
-//     })
-// }
-
-// export const handleRequests = () => dispatch => {
-
-//     SERVICES.getRequests()
-//         .then(({ data }) => {
-
-//             console.log('REQUESTS data');
-//             console.log({ data });
-
-//         })
-//         .catch(error => {
-//             console.log('request error', error);
-//         })
-
-//     // dispatch({
-//     //     type: actionTypes.HANDLE_REQUESTS,
-//     //     // validate THESE and proceed accordingly in REDUCER
-//     //     payload: {
-//     //         requests: data.requests,
-//     //         ammount: data.requests.length,
-//     //     }
-//     // })
-// }
 
 export const populateRequests = (requests) => dispatch => {
 

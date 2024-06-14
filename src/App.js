@@ -4,16 +4,12 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-// import { Switch, Route, Redirect } from 'react-router-dom';
 import {
-  // BrowserRouter,
   Routes,
   Route,
   Navigate,
   useNavigate,
 } from "react-router-dom";
-
-// import { withRouter } from "react-router-dom";
 
 import Main from "./Containers/Main/Main";
 import Signup from "./Containers/Signup/Signup";
@@ -43,8 +39,6 @@ import "./sass/app.scss";
 
 axios.interceptors.request.use(async (config) => {
   config.url = backendUrl + config.url;
-
-  // console.log('config.url', config.url);
 
   if (localStorage.token) {
     config.headers = {
@@ -106,7 +100,6 @@ function App(props) {
   }, []);
 
   const setToast = props.setToast;
-  // const history = props.history;
 
   useEffect(() => {
     // this handles REGISTERED USERS
@@ -114,7 +107,7 @@ function App(props) {
       const getUserData = async () => {
         SERVICES.getUserData()
           .then(({ data }) => {
-            // console.log('App.js GET USER DATA', { data });
+
             const contactsNumber =
               data.contactsNumber === 0 ? null : data.contactsNumber;
 
@@ -162,23 +155,19 @@ function App(props) {
     // this WONT execute since I'm clearing localStorage on REFRESH/browserCLOSE
     // actually ON mobile TAB/CLOSE
     else if (localStorage.getItem("ephemeral-username")) {
+      
       // this HANDLES UNREGISTERED users
-
-      // console.log('useFX-> IF ephemeral-username');
-
       const user = JSON.parse(localStorage.getItem("ephemeral-username"));
 
       socket.emit(USER_DISCONNECTED, user);
 
       const verifyUser = () => {
-        // console.log('verifyUser')
 
         socket.emit(VERIFY_USER, user, isVerified);
       };
 
       const isVerified = (isUser) => {
         if (isUser) {
-          // console.log('isUser TRUE')
 
           setToast({
             showToast: true,
@@ -209,7 +198,6 @@ function App(props) {
         };
         setUserCallback(userData);
         toggleHeaderCallback(true);
-        // history.push('/room');
         navigate("/room", { replace: true });
       };
 
@@ -222,7 +210,6 @@ function App(props) {
     populateRequestCallback,
     t,
     setToast,
-    // history,
     navigate,
   ]);
 
@@ -239,15 +226,10 @@ function App(props) {
   return (
     <SocketContext.Provider value={socket}>
       <Routes>
-        {/* <Route path="/">
-            {props.username ? <Navigate to="/room" replace={true} /> : <Main />}
-          </Route> */}
-
         <Route
           path="/"
           element={username ? <Navigate to="/room" replace={true} /> : <Main />}
         />
-
         <Route
           path="/room"
           element={
@@ -258,64 +240,26 @@ function App(props) {
             )
           }
         />
-
-        {/* <Route path="/room">
-            {props.username || (props.username && props.isLoggedIn) ? (
-              <Room />
-            ) : (
-              <Navigate to="/" replace={true} />
-            )}
-          </Route> */}
-
         <Route
           path="/contacts"
           element={
             isLoggedIn ? <Contacts /> : <Navigate to="/" replace={true} />
           }
         />
-
-        {/* <Route path="/contacts">
-            {props.isLoggedIn ? (
-              <Contacts />
-            ) : (
-              <Navigate to="/" replace={true} />
-            )}
-          </Route> */}
-
         <Route
           path="/profile/:username"
           element={
             isLoggedIn ? <Profile /> : <Navigate to="/" replace={true} />
           }
         />
-
-        {/* <Route path="/profile/:username">
-            {props.isLoggedIn ? (
-              <Profile />
-            ) : (
-              <Navigate to="/" replace={true} />
-            )}
-          </Route> */}
-
         <Route
           path="/requests"
           element={
             isLoggedIn ? <Requests /> : <Navigate to="/" replace={true} />
           }
         />
-
-        {/* <Route path="/requests">
-            {props.isLoggedIn ? (
-              <Requests />
-            ) : (
-              <Navigate to="/" replace={true} />
-            )}
-          </Route> */}
-
         <Route path="/sign-up" element={<Signup />} />
-
         <Route path="/login" element={<Login />} />
-
         <Route path="/*" element={<Error />} />
       </Routes>
     </SocketContext.Provider>
@@ -330,7 +274,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-// export default App;
 export default connect(mapStateToProps, {
   toggleHeader,
   setUser,
@@ -338,11 +281,4 @@ export default connect(mapStateToProps, {
   populateRequests,
   setToast,
 })(App);
-// export default withRouter(connect(mapStateToProps,
-//   {
-//     toggleHeader,
-//     setUser,
-//     setLogInOut,
-//     populateRequests,
-//     setToast,
-//   })(App));
+

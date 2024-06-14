@@ -1,32 +1,24 @@
 import React, { useContext } from 'react';
-import { SocketContext } from '../../context/SocketContext';
 import { Link, useLocation } from 'react-router-dom';
-
-import logo from '../../assets/logo.png';
-
 import { connect } from 'react-redux';
-import { toggleHeader, setUser, setLogInOut, setSelectedContact } from '../../redux/app/actions';
-
-// import { useHistory } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faUser } from '@fortawesome/free-solid-svg-icons';
 
+import { SocketContext } from '../../context/SocketContext';
+import { toggleHeader, setUser, setLogInOut, setSelectedContact } from '../../redux/app/actions';
 import { imageUrl } from '../../config/config';
-
 import { USER_DISCONNECTED } from '../../socketEvents/socketEvents';
 
 import ChangeLanguage from './ChangeLanguage';
 
-import { useTranslation } from 'react-i18next'
+import logo from '../../assets/logo.png';
 
 const Header = (props) => {
 
     const socket = useContext(SocketContext);
 
     let location = useLocation();
-
-    // let history = useHistory();
 
     const { t } = useTranslation();
 
@@ -66,9 +58,7 @@ const Header = (props) => {
         window.location.reload();
     }
 
-    // // console.log('HEADER isTyping', props.isTyping);
 
-    // console.log('HEADER props', location)
     return (
         <header>
 
@@ -189,6 +179,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { toggleHeader, setUser, setLogInOut, setSelectedContact })(Header);
-// export default withRouter(connect(mapStateToProps, { toggleHeader, setUser, setLoginOut })(Header));
-
-// export default Header;

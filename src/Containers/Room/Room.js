@@ -65,12 +65,6 @@ const Room = (props) => {
         setOnlineUsers(users);
     }, [setOnlineUsers]);
 
-    // const setAllContacts = props.setAllContacts;
-
-    // const setAllContactsCallback = useCallback((contacts) => {
-    //     setAllContacts(contacts);
-    // }, [setAllContacts]);
-
     const setAllChats = props.setAllChats;
 
     const setAllChatsCallback = useCallback((data) => {
@@ -168,8 +162,6 @@ const Room = (props) => {
                 })
         }
 
-        // return isLoggedInProp ? getAllRequests() : null;
-
         if(isLoggedInProp) {
             getAllRequests();
         }
@@ -199,13 +191,6 @@ const Room = (props) => {
             getAllRequests();
         })
 
-        // socket CLEANUP to avoid componentWillUnmount WARNING
-        // this was MOVED to App.js to avoid losing connection on NAVIGATION
-        // return () => {
-
-        //     console.log('socket CLOSE');
-        //     socket.close()
-        // };
     }, [socket, setToast, populateRequests, t]);
 
     const setAllContacts = props.setAllContacts;
@@ -214,7 +199,6 @@ const Room = (props) => {
 
         const getAllContacts = () => {
 
-            // console.log('useFX -> getAllContacts')
             SERVICES.getAllContacts()
                 .then(({ data }) => {
 
@@ -229,23 +213,16 @@ const Room = (props) => {
                 })
         }
 
-        // return isLoggedInProp ? getAllContacts() : null;
         if(isLoggedInProp) {
             getAllContacts();
         }
 
     }, [isLoggedInProp, setAllContacts, setToast, t]);
 
-    // const contacts = props.contacts;
-    // const onlineUsers = props.onlineUsers
 
     useEffect(() => {
 
-        // console.log('useFX SEND_ONLINE_USERS');
-
         socket.on(SEND_ALL_ONLINE_USERS, onlineUsers => {
-
-            // console.log('useFX SEND ALL Online USERS')
 
             setOnlineUsersCallback(onlineUsers);
 
@@ -264,14 +241,15 @@ const Room = (props) => {
     const contacts = props.contacts;
     const onlineUsers = props.onlineUsers
 
+    // I SHOULD PERFORM THIS TASK ON THE BACKEND
+    // IT IS TO COSTLY ON THE FRONTEND
+    // RESEARCH AND TO REMEMBER WILL BE NEEDED HAHA
+    // 2024.06.14
     useEffect(() => {
-      // console.log('useFX filter CONTACTS/ONLINE');
 
       if (Array.isArray(onlineUsers) && onlineUsers.length) {
-        // console.log('onlineUSERS isARRAY');
 
         if (Array.isArray(contacts) && contacts.length) {
-          // console.log('contacts isARRAY');
 
           let allOnline = [];
 
@@ -296,8 +274,6 @@ const Room = (props) => {
             }
           });
 
-          // console.log({ allOnline });
-
           allOnline.sort((a, b) =>
             a.isContact !== b.isContact
               ? 1
@@ -305,9 +281,6 @@ const Room = (props) => {
               ? -1
               : 0
           );
-
-          // console.log('sorted');
-          // console.log({ allOnline })
 
           // this is to remove DUPLICATES username's
           const uniqueOnline = Array.from(
@@ -322,7 +295,6 @@ const Room = (props) => {
       // eslint-disable-next-line
     }, [socket, contacts, onlineUserAdded, setOnlineUsersCallback]);
 
-    // const { setToast } = props;
     useEffect(() => {
 
         socket.on(RECEIVE_MESSAGE, ({ message, messageSender, image }) => {
@@ -395,9 +367,8 @@ const Room = (props) => {
     // with ENTER key
     const handleSendMessageEnter = (e) => {
 
-        const key = e.keyCode || e.which
-        // console.log(!message.trim().length) -> returns true for only spaces
-        // console.log(message.trim().length) -> returns 0 
+        const key = e.keyCode || e.which;
+
         if (key === 13 && message !== '' && message.trim().length) {
 
             sendMessage(message);
@@ -470,8 +441,6 @@ const Room = (props) => {
     const openChat = (contact, socketId, image) => {
 
         setHasChat(true);
-
-        // console.log('openChat image', image);
 
         // handle has conversations to consider
         // isChatting -> true/false
@@ -559,7 +528,6 @@ const Room = (props) => {
                     {
                         toggleNav && toggleType === 'online' &&
                         <RoomOnline hasOnlineUsers={hasOnlineUsers}
-                            // onlineUsers={props.onlineUsers}
                             handleContactAdd={handleContactAdd} openChat={openChat}
                             isMobile={true}
                         />}
@@ -602,11 +570,7 @@ const Room = (props) => {
                                             </div>
                                             :
                                             hasMessages &&
-                                            currentChat.map((item, pos) => {
-
-                                                // const d = new Date('2021', '04', '31', '13', '33', '22');
-                                                // const dateToShow = formatRelative(d, new Date(), null) //or {locale: es}
-                                                // esto hay q hacerlo con el valor del I18n
+                                            currentChat.map((item) => {
 
                                                 const format = lang === 'es' ? { locale: es } : null;
 
@@ -631,7 +595,6 @@ const Room = (props) => {
 
                                     <div className="inputEmojiContainer">
                                         <input type="text" placeholder={t('room.typeMessage')}
-                                            // onChange={(e) => setMessage(e.target.value)}
                                             onChange={handleMessage}
                                             onKeyUp={handleSendMessageEnter}
                                             value={message}
@@ -671,7 +634,6 @@ const Room = (props) => {
                         null
                         :
                         <RoomOnline hasOnlineUsers={hasOnlineUsers}
-                            // onlineUsers={props.onlineUsers}
                             handleContactAdd={handleContactAdd}
                             openChat={openChat}
                         />
@@ -695,8 +657,6 @@ const mapStateToProps = (state) => {
         userImage: state.app.userImage,
     }
 }
-
-// export default Room;
 
 export default connect(mapStateToProps, {
     setAllContacts,

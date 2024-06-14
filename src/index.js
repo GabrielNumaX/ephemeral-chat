@@ -1,6 +1,4 @@
-// import React, { Suspense } from 'react';
 import React from 'react';
-// import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
@@ -22,19 +20,6 @@ root.render(
     </Provider>
   </React.StrictMode>
 )
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <Provider store={store}>
-//       <Suspense fallback="loader here">
-//         <BrowserRouter>
-//           <App />
-//         </BrowserRouter>
-//       </Suspense>
-//     </Provider>
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

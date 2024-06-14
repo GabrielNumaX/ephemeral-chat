@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-// import { useParams } from 'react-router-dom';
-
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 
 import Header from '../../Components/Header/Header';
 
-import axios from 'axios';
-
-import { useTranslation } from 'react-i18next';
-import { connect } from 'react-redux';
 import { imageUrl } from '../../config/config';
 import {
     setUserImage,
@@ -51,30 +48,7 @@ const Profile = (props) => {
         message: '',
     });
 
-    // const [isPassRepTouched, setIsPassRepTouched] = useState(false);
-
     const [loader, setLoader] = useState(false);
-
-    // const passwordRepValCallback = useCallback(() => {
-
-    //     if ((userData.password !== userData.passwordRep) && isPassRepTouched) {
-
-    //         setPassRepVal({
-    //             error: true,
-    //             message: t('signup.errors.passwordNoMatch'),
-    //         })
-
-    //         return false;
-    //     }
-    //     else {
-    //         setPassRepVal({
-    //             error: false,
-    //             message: '',
-    //         })
-
-    //         return true;
-    //     }
-    // }, [userData.password, userData.passwordRep, t, isPassRepTouched]);
 
     const validateUsername = (type) => {
 
@@ -155,16 +129,9 @@ const Profile = (props) => {
         }
     }
 
-    // useEffect(() => {
-
-    //     passwordRepValCallback();
-
-    // }, [passwordRepValCallback]);
-
     const onFileChange = (e) => {
 
         setImage(e.target.files[0]);
-
     }
 
     const makeid = (length) => {
@@ -194,31 +161,12 @@ const Profile = (props) => {
                 "Content-Type": "multipart/form-data"
             }
         }).then(({ data }) => {
-            // console.log(data.image)
 
             setInputKey(id);
             setImage(null);
-
             setLoader(false);
 
             props.setUserImage(data.image);
-
-            // UPLOAD image already returns image
-            // axios.get('/users/image')
-            //     .then(({ data }) => {
-
-            //         props.setUserImage(data.image);
-            //     })
-            //     .catch(() => {
-
-            //         // console.log(error);
-            //         // console.log('error on image refresh');
-            //         props.setToast({
-            //             showToast: true,
-            //             message: t('profile.errors.onImageRefresh'),
-            //             type: 'error'
-            //         })
-            //     })
         })
             .catch(() => {
 
@@ -267,8 +215,6 @@ const Profile = (props) => {
                 setNewUsername('');
             })
             .catch(error => {
-
-                // console.log(error.response.status);
 
                 setLoader(false);
 
@@ -443,7 +389,6 @@ const Profile = (props) => {
 
                                     <input type="password" placeholder={t('profile.newPassword')}
                                         onChange={(e) => setUserData({ ...userData, passwordRep: e.target.value })}
-                                        // onFocus={() => setIsPassRepTouched(true)}
                                         value={userData.passwordRep}
                                     ></input>
                                     {passRepVal.error && <p>{passRepVal.message}</p>}
