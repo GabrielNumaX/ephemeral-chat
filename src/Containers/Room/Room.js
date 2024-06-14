@@ -614,7 +614,7 @@ const Room = (props) => {
                                                 pickerStyle={{ position: "absolute", bottom: '60px', right: '30px' }}
                                                 onEmojiClick={(e) => onEmojiClick(e)}
                                                 native={true}
-                                                preload={process.env.REACT_APP_ENV === 'production' ? true : false}
+                                                preload={true}
                                             />
                                         }
                                     </div>
