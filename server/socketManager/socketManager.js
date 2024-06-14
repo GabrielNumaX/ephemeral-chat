@@ -1,4 +1,4 @@
-// const io = require('../index');
+const io = require('../index');
 
 const userModel = require('../models/userModel');
 
@@ -19,9 +19,9 @@ let usersConnected = [];
 
 module.exports = function async(socket) {
 
-    console.log('Socket ID BACKEND', socket.id);
+    // console.log('Socket ID BACKEND', socket.id);
     // console.log({socket});
-    // console.log({io});
+
 
     // verify USERNAME not TAKEN-> also REGISTERED users TODO
     socket.on(VERIFY_USER, async (username, callback) => {
@@ -51,9 +51,9 @@ module.exports = function async(socket) {
     // add verified USER
     socket.on(USER_CONNECTED, ({ user, isRegistered }) => {
 
-        console.log({ USER_CONNECTED });
-        console.log(user);
-        console.log(isRegistered);
+        // console.log({ USER_CONNECTED });
+        // console.log(user);
+        // console.log(isRegistered);
         // handle ADD user for REGISTERED
         // can ADD default values in PARAMS
         // overwrite them from REGIS users
@@ -74,8 +74,8 @@ module.exports = function async(socket) {
 
             try {
 
-                // io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
-            socket.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+                io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+            // socket.emit(SEND_ALL_ONLINE_USERS, usersConnected);
         // console.table(usersConnected);
         }
         catch(serverError) {
@@ -95,6 +95,7 @@ module.exports = function async(socket) {
         usersConnected = removeUser(usersConnected, user);
         // console.table(usersConnected);
         io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+        // socket.emit(SEND_ALL_ONLINE_USERS, usersConnected);
     })
 
     // disconnect USER from Browser->OnClose
@@ -105,13 +106,14 @@ module.exports = function async(socket) {
         usersConnected = removeById(usersConnected, socket.id);
         // console.table(usersConnected);
 
-        // io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
-        socket.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+        io.emit(SEND_ALL_ONLINE_USERS, usersConnected);
+        // socket.emit(SEND_ALL_ONLINE_USERS, usersConnected);
     })
 
     socket.on(IS_TYPING, ({ userTypingId, isTyping, userWhoIsTyping }) => {
 
         io.to(userTypingId).emit(USER_TYPING, ({ isTyping, userWhoIsTyping }))
+        // socket.to(userTypingId).emit(USER_TYPING, ({ isTyping, userWhoIsTyping }))
     })
 
     socket.on(SEND_MESSAGE, ({ message, messageSender, messageSocketId, image }) => {
@@ -119,6 +121,7 @@ module.exports = function async(socket) {
         // console.log('SEND_MESSAGE', message, messageSender, image)
 
         io.to(messageSocketId).emit(RECEIVE_MESSAGE, ({ message, messageSender, image }))
+        // socket.to(messageSocketId).emit(RECEIVE_MESSAGE, ({ message, messageSender, image }))
     })
 
     socket.on(SEND_REQUEST, ({ receiverSocketId, sender }) => {
@@ -126,10 +129,12 @@ module.exports = function async(socket) {
         // console.log('SEND_REQUEST', sender, receiverSocketId);
 
         io.to(receiverSocketId).emit(RECEIVE_REQUEST, ({ sender }))
+        // socket.to(receiverSocketId).emit(RECEIVE_REQUEST, ({ sender }))
 
     })
 
 }
+
 
 const regUserCheck = async (username) => {
 

@@ -5,7 +5,6 @@ const express = require('express');
 const cors = require("cors");
 const path = require("path");
 const { Server } = require("socket.io");
-const socketManager = require('./socketManager/socketManager');
 
 // const checkJwt = require('./middleware/tokenCheck');
 
@@ -21,27 +20,15 @@ const http = require('http');
 const server = http.createServer(app);
 
 // this is IMPORTANT line 66 export NOT WORKING
-// const io = module.exports = new Server(server, {
-//   cors: {
-//     origin: process.env.NODE_ENV === "production" ? false : ['http://localhost:3000'],
-//   },
-//   credentials: true,
-// });
-const io = new Server(server, {
+const io = module.exports = new Server(server, {
   cors: {
     origin: process.env.NODE_ENV === "production" ? false : ['http://localhost:3000'],
   },
   credentials: true,
 });
 
-// console.log('SERVER io');
-// console.log({io});
-
+const socketManager = require("./socketManager/socketManager");
 io.on("connection", socketManager);
-// io.on("connection", () => {
-//   console.log('SOCKET CONNECTED')
-// });
-
 
 const PORT = parseInt(process.env.PORT, 10) || 3030;
 const dev = process.env.NODE_ENV !== "production";
@@ -107,7 +94,5 @@ server.listen(PORT, () => {
   console.log(`listening on http://localhost:${PORT}`);
 });
 
-// module.exports = { io }
-// module.exports = io; 
 
 

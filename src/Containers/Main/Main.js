@@ -15,10 +15,6 @@ import Toast from "../../Components/Toast/Toast";
 const Main = (props) => {
   const socket = useContext(SocketContext);
   const { t } = useTranslation();
-
-  console.log('Main RENDER');
-  console.log({props});
-
   let navigate = useNavigate();
 
   const [user, setUser] = useState("");
@@ -27,9 +23,6 @@ const Main = (props) => {
     error: false,
     message: "",
   });
-
-  // console.log('Main RENDER');
-  // console.log({socket});
 
   useEffect(() => {
     if (user === "") {
@@ -41,7 +34,6 @@ const Main = (props) => {
   }, [user]);
 
   const validate = () => {
-    console.log("validate()");
 
     if (user.length < 3 || !user.trim().length) {
       setUserError({
@@ -60,21 +52,14 @@ const Main = (props) => {
   };
 
   const verifyUser = () => {
-    console.log("verifyUser");
-    console.log({ user });
 
-    try {
-      socket.emit(VERIFY_USER, user, isVerified);
-    } catch (error) {
-      console.log({ error });
-    }
+    socket.emit(VERIFY_USER, user, isVerified);
   };
 
   const isVerified = (isUser) => {
-    console.log({ isUser });
 
     if (isUser) {
-      setUserError({
+      return setUserError({
         error: true,
         message: t("main.errors.userInUse"),
       });
@@ -85,13 +70,8 @@ const Main = (props) => {
       });
 
       // handle CONNECTED HERE,
+      socket.emit(USER_CONNECTED, { user, isRegistered: isUser });
 
-      try {
-        socket.emit(USER_CONNECTED, { user });
-      } catch (socketError) {
-        console.log({ socketError });
-      }
-      // socket.emit(USER_CONNECTED, user );
       localStorage.setItem("ephemeral-username", JSON.stringify(user));
 
       const userData = {
@@ -100,15 +80,10 @@ const Main = (props) => {
         contactsNumber: null,
       };
 
-      try {
-        props.setUser(userData);
-        props.toggleHeader(true);
-        // props.history.push('/room');
-        console.log("BEFORE navigate()");
-        navigate("/room", { replace: true });
-      } catch (propError) {
-        console.log({ propError });
-      }
+      props.setUser(userData);
+      props.toggleHeader(true);
+      // props.history.push('/room');
+      navigate("/room", { replace: true });
     }
   };
 
@@ -117,7 +92,6 @@ const Main = (props) => {
 
     // here I should process user NOT registered to access ROOM
     if (!validate()) {
-      console.log("!validate()");
       return;
     }
 
